@@ -1,5 +1,6 @@
 package com.app.ecoswap.controllers;
 
+import com.app.ecoswap.exceptions.NotUserFoundException;
 import com.app.ecoswap.models.User;
 import com.app.ecoswap.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,17 +27,17 @@ public class UserController {
     }
 
     @GetMapping("user/{id}")
-    public Optional<User> getUserById(@PathVariable Long id)  {
+    public User getUserById(@PathVariable Long id)  {
         return userService.getUserById(id);
     }
 
     @PostMapping("user/create")
     public ResponseEntity<String> createUser(@RequestBody User user){
-        if(!userService.checkEmailExists(user)){
+        if (!userService.checkEmailExists(user)) {
             userService.createUser(user);
-            return ResponseEntity.status(HttpStatus.CREATED).body(" usuario creado");
-        }else{
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("correo electronico ya existe");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Usuario creado");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Correo electronico ya existe");
         }
     }
 
@@ -47,7 +48,7 @@ public class UserController {
     }
 
     @DeleteMapping("user/{id}/delete")
-    public String deleteUser(@PathVariable Long id){
+    public ResponseEntity<String> deleteUser(@PathVariable Long id){
         return userService.deleteUser(id);
     }
 }

@@ -1,13 +1,11 @@
 package com.app.ecoswap.services;
 
 import com.app.ecoswap.exceptions.NotUserFoundException;
-import com.app.ecoswap.models.Product;
 import com.app.ecoswap.models.User;
 import com.app.ecoswap.repositories.IUserRepository;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,8 +21,9 @@ public class UserService {
         return (ArrayList<User>) userRepository.findAll();
     }
 
-    public Optional<User> getUserById(Long id)  {
-        return userRepository.findById(id);
+    public User getUserById(Long id)  {
+        return userRepository.findById(id)
+                .orElseThrow(()->new NotUserFoundException("Usuario no existe en la base de datos"));
     }
 
     public boolean checkEmailExists(User request){
@@ -44,7 +43,7 @@ public class UserService {
                 existingUser.setName(user.getName());
                 existingUser.setAddress(user.getAddress());
                 existingUser.setPassword(user.getPassword());
-                existingUser.setCellphone_number(user.getCellphone_number());
+                existingUser.setCellphoneNumber(user.getCellphoneNumber());
                 return userRepository.save(existingUser);
             }else{
                 throw new NotUserFoundException("No se encontró un usuario");
@@ -56,9 +55,13 @@ public class UserService {
 
     }
 
-    public String deleteUser(Long id){
-        userRepository.deleteById(id);
-        return "Usuario Eliminado Correctamente";
+    public ResponseEntity<String> deleteUser(Long id){
+        try {
+            userRepository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Usuario Eliminado exitosamente");
+        }catch (Exception e){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario no pudo ser eliminado");
+        }
     }
 
 
