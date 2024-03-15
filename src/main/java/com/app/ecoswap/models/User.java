@@ -1,10 +1,7 @@
 package com.app.ecoswap.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 @Data
@@ -14,16 +11,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column
+    @Column(nullable = false)
     private String name;
-    @Column
+    @Column(nullable = false, unique = true)
     private String email;
-    @Column
+    @Column(nullable = false)
     private String password;
-    @Column
+    @Column(nullable = false)
     private String address;
-    @Column
-    private int cellphone_number;
+    @Column(nullable = false, name = "cellphone_number")
+    private int cellphoneNumber;
 
 
     public Long getId() {
@@ -66,12 +63,13 @@ public class User {
         this.address = address;
     }
 
-    public int getCellphone_number() {
-        return cellphone_number;
+
+    public int getCellphoneNumber() {
+        return cellphoneNumber;
     }
 
-    public void setCellphone_number(int cellphone_number) {
-        this.cellphone_number = cellphone_number;
+    public void setCellphoneNumber(int cellphoneNumber) {
+        this.cellphoneNumber = cellphoneNumber;
     }
 
     @Override
@@ -82,7 +80,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
-                ", cellphone_number=" + cellphone_number +
+                ", cellphoneNumber=" + cellphoneNumber +
                 '}';
     }
 }
