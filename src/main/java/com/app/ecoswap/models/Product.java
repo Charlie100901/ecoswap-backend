@@ -15,9 +15,6 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //FOREING KEY = USER_ID
-    @ManyToOne(targetEntity = User.class, cascade = CascadeType.REMOVE, optional = false)
-    private User user;
     @Column(nullable = false)
     private String title;
     @Column(nullable = false)
@@ -29,6 +26,9 @@ public class Product {
     @Column(nullable = true)
     private String imageProduct;
 
+    //FOREING KEY = USER_ID
+    @ManyToOne(targetEntity = User.class, cascade = CascadeType.REMOVE, optional = false)
+    private User user;
     public Long getId() {
         return id;
     }
