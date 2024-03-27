@@ -1,11 +1,9 @@
 package com.app.ecoswap.services;
 
-import com.app.ecoswap.exceptions.NotUserFoundException;
+import com.app.ecoswap.exceptions.UserNotFoundException;
 import com.app.ecoswap.models.User;
 import com.app.ecoswap.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,7 +21,7 @@ public class UserService {
 
     public User getUserById(Long id)  {
         return userRepository.findById(id)
-                .orElseThrow(()->new NotUserFoundException("Usuario no existe en la base de datos"));
+                .orElseThrow(()->new UserNotFoundException("Usuario no existe en la base de datos"));
     }
 
     public boolean checkEmailExists(User request){
@@ -36,7 +34,6 @@ public class UserService {
     }
 
     public User updateUserById(Long id, User user){
-        try {
             Optional<User> existingUserOptional = userRepository.findById(id);
             if(existingUserOptional.isPresent()){
                 User existingUser = existingUserOptional.get();
@@ -45,22 +42,18 @@ public class UserService {
                 existingUser.setPassword(user.getPassword());
                 existingUser.setCellphoneNumber(user.getCellphoneNumber());
                 return userRepository.save(existingUser);
-            }else{
-                throw new NotUserFoundException("No se encontró un usuario");
+            }else {
+                throw new UserNotFoundException("No se encontró un usuario");
             }
-        }catch (NotUserFoundException ex) {
-            System.out.println(ex.getMessage());
-            return null;
-        }
-
     }
 
-    public ResponseEntity<String> deleteUser(Long id){
-        try {
+    public String deleteUser(Long id){
+        Optional<User> userOptional = userRepository.findById(id);
+        if (userOptional.isPresent()) {
             userRepository.deleteById(id);
-            return ResponseEntity.status(HttpStatus.OK).body("Usuario Eliminado exitosamente");
-        }catch (Exception e){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Usuario no pudo ser eliminado");
+            return "Usuario eliminado exitosamente";
+        } else {
+            throw new UserNotFoundException("No se encontró un usuario con el ID especificado: " + id);
         }
     }
 

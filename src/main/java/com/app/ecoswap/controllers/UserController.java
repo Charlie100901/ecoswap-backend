@@ -1,6 +1,6 @@
 package com.app.ecoswap.controllers;
 
-import com.app.ecoswap.exceptions.NotUserFoundException;
+import com.app.ecoswap.exceptions.UserNotFoundException;
 import com.app.ecoswap.models.User;
 import com.app.ecoswap.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Optional;
 
 @Validated
 @RestController
@@ -49,6 +48,13 @@ public class UserController {
 
     @DeleteMapping("user/{id}/delete")
     public ResponseEntity<String> deleteUser(@PathVariable Long id){
-        return userService.deleteUser(id);
+        try {
+            String response = userService.deleteUser(id);
+            return ResponseEntity.ok(response);
+        } catch (UserNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("El usuario no se encontró: " + e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ha ocurrido un error: " + e.getMessage());
+        }
     }
 }
