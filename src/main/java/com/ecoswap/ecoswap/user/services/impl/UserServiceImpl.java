@@ -1,31 +1,61 @@
 package com.ecoswap.ecoswap.user.services.impl;
 
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ecoswap.ecoswap.product.models.dto.ProductDTO;
+import com.ecoswap.ecoswap.user.exceptions.UserNotFoundException;
 import com.ecoswap.ecoswap.user.models.dto.UserDTO;
+import com.ecoswap.ecoswap.user.models.entities.User;
+import com.ecoswap.ecoswap.user.repositories.UserRepository;
 import com.ecoswap.ecoswap.user.services.UserService;
 
+@Service
 public class UserServiceImpl implements UserService{
 
-    @Override
-    public void create(UserDTO userDTO) {
-        System.out.println("Crear");
-    }
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<UserDTO> findAll() {
-        List<UserDTO> list = Arrays
-            .asList(
-                new UserDTO(1L, "Carlos Mendoza", "carlos.mendoza@example.com", "password123", "Calle 10, Cartagena", 300127),
-                new UserDTO(2L, "Ana López", "ana.lopez@example.com", "password456", "Avenida Siempre Viva, Medellín", 3104321),
-                new UserDTO(3L, "Luis Rodríguez", "luis.rodriguez@example.com", "password789", "Carrera 7, Bogotá", 3209876),
-                new UserDTO(4L, "Marta Sánchez", "marta.sanchez@example.com", "password012", "Calle 5, Barranquilla", 3012678),
-                new UserDTO(5L, "Pedro Ramírez", "pedro.ramirez@example.com", "password345", "Avenida 3, Cali", 31187632),
-                new UserDTO(6L, "Laura Gómez", "laura.gomez@example.com", "password678", "Carrera 50, Bucaramanga", 31596543)
-            );
+        return userRepository.findAll().stream()
+        .map(user -> new UserDTO(
+            user.getId(),
+            user.getName(),
+            user.getEmail(),
+            user.getAddress(),
+            user.getCellphoneNumber()
+        ))
+        .collect(Collectors.toList());
 
-        return list;
+    }
+
+    @Override
+    public void createUser(UserDTO userDTO) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'createUser'");
+    }
+
+    @Override
+    public UserDTO getUserById(Long id) {
+        User user = userRepository.findById(id)
+                                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
+        return new UserDTO(user.getId(), user.getName(), user.getEmail(), user.getEmail(), user.getCellphoneNumber());
+    }
+
+    @Override
+    public ProductDTO updateUserById(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateUserById'");
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
     }
 
 }
