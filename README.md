@@ -1,7 +1,8 @@
 # ECOSWAP
 
 Integrantes: 
-Ruben Dario Castaño Gallardo,
-Carlos Alberto De La Rosa Banquez,
-Jesús Alberto Santana Maza,
-Camilo Cabrales Pabon 
+Ruben Dario Castaño Gallardo
+Carlos Alberto De La Rosa Banquez
+Jesús Alberto Santana Maza
+Camilo Cabrales Pabon
+Oscar David Castillo Caballero
