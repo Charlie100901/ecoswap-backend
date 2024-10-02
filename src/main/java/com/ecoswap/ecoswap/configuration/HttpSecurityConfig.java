@@ -36,13 +36,18 @@ public class HttpSecurityConfig {
                     authorize.requestMatchers(HttpMethod.POST, "/auth/login").permitAll();
 
                     authorize.requestMatchers(HttpMethod.POST, "/auth/register").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET, "api/V1/product/category/{category}").permitAll();
+
+                    authorize.requestMatchers(HttpMethod.POST, "/api/V1/product/create").authenticated();
+                    authorize.requestMatchers(HttpMethod.GET, "/api/v1/product").permitAll();
+                    authorize.requestMatchers(HttpMethod.DELETE, "/product/{id}").authenticated();
+                    authorize.requestMatchers(HttpMethod.PUT, "/product/{id}").authenticated();
 
 
 
-                    // authorize.requestMatchers(HttpMethod.GET, "/api/v1/products").permitAll();
                     // authorize.requestMatchers(HttpMethod.POST, "/api/v1/create").hasAuthority(Permission.SAVE_ONE_PRODUCT.name());
 
-                    authorize.anyRequest().denyAll();
+                    authorize.anyRequest().permitAll();
                 })
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
