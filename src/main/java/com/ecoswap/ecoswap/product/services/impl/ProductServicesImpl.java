@@ -4,9 +4,12 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ecoswap.ecoswap.exchange.models.entities.Exchange;
+import com.ecoswap.ecoswap.exchange.repositories.ExchangeRepository;
 import com.ecoswap.ecoswap.product.exceptions.ProductCreationException;
 import com.ecoswap.ecoswap.user.models.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -24,6 +27,9 @@ public class ProductServicesImpl implements ProductService{
     @Autowired
     public ProductRepository productRepository;
 
+    @Autowired
+    private ExchangeRepository exchangeRepository;
+
   
     @Override
     public List<ProductDTO> findAll() {
@@ -35,7 +41,7 @@ public class ProductServicesImpl implements ProductService{
             product.getDescription(),
             product.getCategory(),
                 product.getConditionProduct(),
-            null,
+            product.getImageProduct(),
             LocalDate.now()
         ))
         .collect(Collectors.toList());
@@ -165,7 +171,7 @@ public class ProductServicesImpl implements ProductService{
                 product.getDescription(),
                 product.getCategory(),
                 product.getConditionProduct(),
-                null,
+                product.getImageProduct(),
                 LocalDate.now()
         );
     }
@@ -216,6 +222,28 @@ public class ProductServicesImpl implements ProductService{
                 .collect(Collectors.toList());
 
         return productDTOs;
+
+    }
+
+    @Override
+    @Scheduled(fixedRate = 3000)
+    public void markProductsAsInactiveFromCompletedExchanges() {
+        List<Exchange> completedExchanges = exchangeRepository.findByStatus("completado");
+
+        for (Exchange exchange : completedExchanges) {
+            Product productTo = exchange.getProductTo();
+            Product productFrom = exchange.getProductFrom();
+
+            if (productTo != null) {
+                productTo.setProductStatus("inactivo");
+                productRepository.save(productTo);
+            }
+
+            if (productFrom != null) {
+                productFrom.setProductStatus("inactivo");
+                productRepository.save(productFrom);
+            }
+        }
 
     }
 
