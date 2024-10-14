@@ -43,6 +43,9 @@ public class HttpSecurityConfig {
                     authorize.requestMatchers(HttpMethod.DELETE, "/product/{id}").authenticated();
                     authorize.requestMatchers(HttpMethod.PUT, "/product/{id}").authenticated();
 
+                    authorize.requestMatchers(HttpMethod.POST, "/api/v1/create-exchange").authenticated();
+                    authorize.requestMatchers(HttpMethod.POST, "/api/v1/select-exchange").authenticated();
+
 
 
                     // authorize.requestMatchers(HttpMethod.POST, "/api/v1/create").hasAuthority(Permission.SAVE_ONE_PRODUCT.name());
