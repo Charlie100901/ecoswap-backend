@@ -36,4 +36,9 @@ public class UserController {
         return userService.getUserById(id);
     }
 
+    @GetMapping("user/me")
+    public UserDTO getCurrentUser () {
+        return userService.getCurrentUser();
+    }
+
 }

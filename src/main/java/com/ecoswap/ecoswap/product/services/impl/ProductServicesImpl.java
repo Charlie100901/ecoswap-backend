@@ -1,14 +1,21 @@
 package com.ecoswap.ecoswap.product.services.impl;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import com.ecoswap.ecoswap.exchange.models.entities.Exchange;
 import com.ecoswap.ecoswap.exchange.repositories.ExchangeRepository;
+import com.ecoswap.ecoswap.product.exceptions.FileFormatException;
 import com.ecoswap.ecoswap.product.exceptions.ProductCreationException;
 import com.ecoswap.ecoswap.user.models.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -20,6 +27,7 @@ import com.ecoswap.ecoswap.product.models.entities.Product;
 import com.ecoswap.ecoswap.product.repositories.ProductRepository;
 import com.ecoswap.ecoswap.product.services.ProductService;
 import com.ecoswap.ecoswap.user.models.dto.UserDTO;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class ProductServicesImpl implements ProductService{
@@ -30,7 +38,9 @@ public class ProductServicesImpl implements ProductService{
     @Autowired
     private ExchangeRepository exchangeRepository;
 
-  
+    @Value("${image.storage.path}")
+    private String storageFolderPath;
+
     @Override
     public List<ProductDTO> findAll() {
         return productRepository.findAll().stream()
@@ -48,39 +58,30 @@ public class ProductServicesImpl implements ProductService{
     }
 
     @Override
-    public ProductDTO createProduct(ProductDTO productDTO) {
+    public ProductDTO createProduct(ProductDTO productDTO, MultipartFile image) {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             User usuarioAutenticado = (User) auth.getPrincipal();
 
 
-//            if (image == null || image.isEmpty()) {
-//                throw new IllegalArgumentException("Debe proporcionar una imagen para crear el producto");
-//            }
+            if (image == null || image.isEmpty()) {
+                throw new IllegalArgumentException("Debe proporcionar una imagen para crear el producto");
+            }
 
-            // Obtener el nombre de la imagen
-//            String imageName = image.getOriginalFilename();
-//            // Obtener la extensión del archivo
-//            String fileExtension = imageName.substring(imageName.lastIndexOf(".") + 1).toLowerCase();
+            String imageName = image.getOriginalFilename();
+            // Obtener la extensión del archivo
+            String fileExtension = imageName.substring(imageName.lastIndexOf(".") + 1).toLowerCase();
 
-            // Verificar si la extensión es válida
-//            if (!Arrays.asList("jpg", "jpeg", "png").contains(fileExtension)) {
-//                throw new FileFormatException("Extensión de imagen no permitida. Por favor suba una imagen con extensión jpg, png o jpeg");
-//            }
+            if (!Arrays.asList("jpg", "jpeg", "png").contains(fileExtension)) {
+                throw new FileFormatException("Extensión de imagen no permitida. Por favor suba una imagen con extensión jpg, png o jpeg");
+            }
 
-            // Crear un nombre único para cada imagen
-//            String uniqueFileName = UUID.randomUUID().toString() + "_" + imageName;
-//            // Ruta donde se guardarán las imágenes en el servidor
-//            String serverImagePath = "http://localhost:8080/images/" + uniqueFileName;
-//
-//            // Guardar la imagen en el servidor
-//            Files.write(Paths.get(storageFolderPath, uniqueFileName), image.getBytes());
+            String uniqueFileName = UUID.randomUUID().toString() + "_" + imageName;
+            // Ruta donde se guardarán las imágenes en el servidor
+            String serverImagePath = "http://localhost:8080/images/" + uniqueFileName;
 
-            // Guardar la URL del servidor en el objeto Product
-//            productRequest.setImageProduct(serverImagePath);
-//            productDTO.setUser(user);
-//            productDTO.setProductStatus("activo");
-//            productDTO.setReleaseDate(LocalDate.now());
+            // Guardar la imagen en el servidor
+            Files.write(Paths.get(storageFolderPath, uniqueFileName), image.getBytes());
 
             //Pasar el DTO a entidad para guardarlo
             Product product = new Product();
@@ -88,13 +89,12 @@ public class ProductServicesImpl implements ProductService{
             product.setTitle(productDTO.getTitle());
             product.setDescription(productDTO.getDescription());
             product.setCategory(productDTO.getCategory());
-            product.setImageProduct("ssfgsa");
+            product.setImageProduct(serverImagePath);
             product.setConditionProduct(productDTO.getConditionProduct());
             product.setUser(usuarioAutenticado);
             product.setProductStatus("activo");
             product.setReleaseDate(LocalDate.now());
 
-            // Guardar el producto y convertirlo a DTO
             Product savedProduct = productRepository.save(product);
             ProductDTO productDTOResponse = new ProductDTO();
             productDTOResponse.setId(savedProduct.getId());
@@ -103,13 +103,13 @@ public class ProductServicesImpl implements ProductService{
             productDTOResponse.setConditionProduct(savedProduct.getConditionProduct());
             productDTOResponse.setTitle(savedProduct.getTitle());
             productDTOResponse.setImageProduct(savedProduct.getImageProduct());
-//            productDTOResponse.setUser(savedProduct.getUser().getEmail()); // o el atributo que desees
+//            productDTOResponse.setUser(savedProduct.getUser().getEmail());
             productDTOResponse.setReleaseDate(savedProduct.getReleaseDate());
 
 
             return productDTOResponse;
 
-        } catch (Exception e) { //CAMBIAR LA EXCEPCION POR IOEXCEPTION cuando suba la imagen
+        } catch (IOException e) { //CAMBIAR LA EXCEPCION POR IOEXCEPTION cuando suba la imagen
             throw new ProductCreationException("Error al crear el producto: " + e.getMessage());
         }
     }

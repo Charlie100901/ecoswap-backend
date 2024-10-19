@@ -3,7 +3,10 @@ package com.ecoswap.ecoswap.user.services.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.ecoswap.ecoswap.product.models.dto.ProductDTO;
@@ -56,6 +59,22 @@ public class UserServiceImpl implements UserService{
     public void deleteUser(Long id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
+    }
+
+    @Override
+    public UserDTO getCurrentUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User usuarioAutenticado = (User) auth.getPrincipal();
+        if (!auth.isAuthenticated()) {
+            throw new RuntimeException("Usuario no autenticado");
+        }
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(usuarioAutenticado.getId());
+        userDTO.setName(usuarioAutenticado.getName());
+        userDTO.setEmail(usuarioAutenticado.getEmail());
+
+        return userDTO;
     }
 
 }

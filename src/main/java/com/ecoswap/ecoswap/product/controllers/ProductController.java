@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.ecoswap.ecoswap.product.models.dto.ProductDTO;
 import com.ecoswap.ecoswap.product.services.ProductService;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/v1/")
@@ -39,8 +40,8 @@ public class ProductController {
     }
 
     @PostMapping("/product/create")
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO){
-        return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(productDTO));
+    public ResponseEntity<ProductDTO> createProduct(ProductDTO productDTO, @RequestParam("file") MultipartFile image){
+        return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(productDTO, image));
     }
 
     @PutMapping("/product/{id}")
