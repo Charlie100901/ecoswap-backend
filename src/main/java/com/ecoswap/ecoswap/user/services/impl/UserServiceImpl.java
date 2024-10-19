@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService{
     public UserDTO getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User usuarioAutenticado = (User) auth.getPrincipal();
-        if (!auth.isAuthenticated()) {
+        if (usuarioAutenticado == null || !auth.isAuthenticated()) {
             throw new RuntimeException("Usuario no autenticado");
         }
 
