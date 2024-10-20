@@ -5,18 +5,26 @@ import com.ecoswap.ecoswap.exchange.models.dto.ExchangeDTO;
 import com.ecoswap.ecoswap.exchange.models.entities.Exchange;
 import com.ecoswap.ecoswap.exchange.repositories.ExchangeRepository;
 import com.ecoswap.ecoswap.exchange.services.ExchangeService;
+import com.ecoswap.ecoswap.product.models.dto.ProductDTO;
+import com.ecoswap.ecoswap.product.models.entities.Product;
+import com.ecoswap.ecoswap.product.repositories.ProductRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ExchangeServiceImpl implements ExchangeService {
 
     @Autowired
     private ExchangeRepository exchangeRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public ExchangeDTO createRequestExchange(ExchangeDTO requestExchange) {
@@ -66,5 +74,23 @@ public class ExchangeServiceImpl implements ExchangeService {
         completedExchangeDTO.setExchangeRespondedAt(optionalExchange.getExchangeRespondedAt());
 
         return completedExchangeDTO;
+    }
+
+    @Override
+    public List<ExchangeDTO> findByProductTo(ProductDTO productDTO) {
+        Optional<Product> product = productRepository.findById(productDTO.getId());
+        List<Exchange> exchanges = exchangeRepository.findByProductTo(product.get());
+
+        return exchanges.stream()
+                .map(exchange -> new ExchangeDTO(
+                        exchange.getId(),
+                        exchange.getProductFrom(),
+                        exchange.getProductTo(),
+                        exchange.getStatus(),
+                        exchange.getExchangeRequestedAt(),
+                        exchange.getExchangeRespondedAt()
+                ))
+                .collect(Collectors.toList());
+
     }
 }
