@@ -51,6 +51,7 @@ public class HttpSecurityConfig {
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/exchanges").permitAll();
 
 
+                    authorize.requestMatchers(HttpMethod.GET,"/api/v1/user").authenticated();
                     authorize.requestMatchers(HttpMethod.GET, "/api/v1/user/me").authenticated();
 
 
