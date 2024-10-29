@@ -13,9 +13,13 @@ import com.ecoswap.ecoswap.exchange.models.entities.Exchange;
 import com.ecoswap.ecoswap.exchange.repositories.ExchangeRepository;
 import com.ecoswap.ecoswap.product.exceptions.FileFormatException;
 import com.ecoswap.ecoswap.product.exceptions.ProductCreationException;
+import com.ecoswap.ecoswap.product.models.dto.ProductResponseDTO;
 import com.ecoswap.ecoswap.user.models.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,19 +46,24 @@ public class ProductServicesImpl implements ProductService{
     private String storageFolderPath;
 
     @Override
-    public List<ProductDTO> findAll() {
-        return productRepository.findAll().stream()
-        .filter(product -> "activo".equals(product.getProductStatus()))
-        .map(product -> new ProductDTO(
-            product.getId(),
-            product.getTitle(),
-            product.getDescription(),
-            product.getCategory(),
-                product.getConditionProduct(),
-            product.getImageProduct(),
-            LocalDate.now()
-        ))
-        .collect(Collectors.toList());
+    public ProductResponseDTO findAll(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> productPage = productRepository.findByProductStatus("activo", pageable);
+
+        List<ProductDTO> products = productPage.stream()
+                .map(product -> new ProductDTO(
+                        product.getId(),
+                        product.getTitle(),
+                        product.getDescription(),
+                        product.getCategory(),
+                        product.getConditionProduct(),
+                        product.getImageProduct(),
+                        product.getReleaseDate()
+                ))
+                .collect(Collectors.toList());
+
+        return new ProductResponseDTO(products, productPage.getTotalPages());
+
     }
 
     @Override
@@ -177,8 +186,9 @@ public class ProductServicesImpl implements ProductService{
     }
 
     @Override
-    public List<ProductDTO> getProductsByCategory(String category) {
-        List<Product> products = productRepository.findByCategory(category);
+    public ProductResponseDTO getProductsByCategory(String category, int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Product> products = productRepository.findByCategory(category, pageable);
 
         List<ProductDTO> productDTOs = products.stream()
                 .filter(product -> "activo".equals(product.getProductStatus()))
@@ -195,7 +205,7 @@ public class ProductServicesImpl implements ProductService{
                 })
                 .collect(Collectors.toList());
 
-        return productDTOs;
+        return new ProductResponseDTO(productDTOs, products.getTotalPages());
 
     }
 
