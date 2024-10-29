@@ -2,6 +2,7 @@ package com.ecoswap.ecoswap.product.controllers;
 
 import java.util.List;
 
+import com.ecoswap.ecoswap.product.models.dto.ProductResponseDTO;
 import com.ecoswap.ecoswap.product.models.entities.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,8 +21,11 @@ public class ProductController {
     public ProductService productService;
 
     @GetMapping("product")
-    public ResponseEntity<List<ProductDTO>> findAllProducts(){
-        return ResponseEntity.ok(productService.findAll());
+    public ResponseEntity<ProductResponseDTO> findAllProducts(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "9") int size
+    ) {
+        return ResponseEntity.ok(productService.findAll(page, size));
     }
 
     @GetMapping("/product/{id}")
@@ -30,8 +34,10 @@ public class ProductController {
     }
 
     @GetMapping("/product/category/{category}")
-    public ResponseEntity<List<ProductDTO>> getProductByCategory(@PathVariable String category){
-        return ResponseEntity.ok(productService.getProductsByCategory(category));
+    public ResponseEntity<ProductResponseDTO> getProductByCategory(@PathVariable String category,
+                                                                 @RequestParam(defaultValue = "0") int page,
+                                                                 @RequestParam(defaultValue = "9") int size){
+        return ResponseEntity.ok(productService.getProductsByCategory(category, page, size));
     }
 
     @GetMapping("/product/user")
@@ -40,7 +46,7 @@ public class ProductController {
     }
 
     @PostMapping("/product/create")
-    public ResponseEntity<ProductDTO> createProduct(ProductDTO productDTO, @RequestParam("file") MultipartFile image){
+    public ResponseEntity<ProductDTO> createProduct(ProductDTO productDTO, @RequestParam(value = "file", required = false) MultipartFile image){
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(productDTO, image));
     }
 

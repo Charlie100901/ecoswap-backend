@@ -22,14 +22,14 @@ public class Exchange {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_product_from", nullable = false)
+    @JoinColumn(name = "id_product_from")
     private Product productFrom;
 
     @ManyToOne
-    @JoinColumn(name = "id_product_to", nullable = false)
+    @JoinColumn(name = "id_product_to")
     private Product productTo;
 
-    @Column(nullable = true, length = 15)
+    @Column(nullable = false, length = 15)
     private String status;
 
     @Column
