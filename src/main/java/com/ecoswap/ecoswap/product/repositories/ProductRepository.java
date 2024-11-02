@@ -14,7 +14,10 @@ import com.ecoswap.ecoswap.product.models.entities.Product;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>{
+    List<Product> findTop5ByProductStatusOrderByReleaseDateDesc(String productStatus);
     Page<Product> findByCategory(String category, Pageable pageable);
     Page<Product> findByProductStatus(String productStatus, Pageable pageable);
     List<Product> findByUser(User user);
+
+
 }

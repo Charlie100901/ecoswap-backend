@@ -236,6 +236,26 @@ public class ProductServicesImpl implements ProductService{
     }
 
     @Override
+    public List<ProductDTO> getRecentlyProducts() {
+        List<Product> recentlyProducts = productRepository.findTop5ByProductStatusOrderByReleaseDateDesc("activo");
+
+        return recentlyProducts.stream()
+                .map(product -> {
+                    ProductDTO productDTO = new ProductDTO();
+                    productDTO.setId(product.getId());
+                    productDTO.setTitle(product.getTitle());
+                    productDTO.setDescription(product.getDescription());
+                    productDTO.setCategory(product.getCategory());
+                    productDTO.setConditionProduct(product.getConditionProduct());
+                    productDTO.setImageProduct(product.getImageProduct());
+                    productDTO.setReleaseDate(product.getReleaseDate());
+                    return productDTO;
+                })
+                .toList();
+
+    }
+
+    @Override
     @Scheduled(fixedRate = 3000)
     public void markProductsAsInactiveFromCompletedExchanges() {
         List<Exchange> completedExchanges = exchangeRepository.findByStatus("completado");

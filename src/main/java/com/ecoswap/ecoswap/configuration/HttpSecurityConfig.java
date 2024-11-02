@@ -43,6 +43,7 @@ public class HttpSecurityConfig {
                     authorize.requestMatchers(HttpMethod.DELETE, "/product/{id}").authenticated();
                     authorize.requestMatchers(HttpMethod.PUT, "/product/{id}").authenticated();
                     authorize.requestMatchers(HttpMethod.GET, "/api/v1/product/{id}").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET, "api/v1/product/recent").permitAll();
 
                     authorize.requestMatchers(HttpMethod.GET, "/images/**").permitAll();
 
