@@ -45,6 +45,11 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProductsByUser());
     }
 
+    @GetMapping("/product/recent")
+    public ResponseEntity<List<ProductDTO>> getRecentlyProducts(){
+        return ResponseEntity.ok(productService.getRecentlyProducts());
+    }
+
     @PostMapping("/product/create")
     public ResponseEntity<ProductDTO> createProduct(ProductDTO productDTO, @RequestParam(value = "file", required = false) MultipartFile image){
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(productDTO, image));
