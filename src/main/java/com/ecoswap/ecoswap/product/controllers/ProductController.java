@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ecoswap.ecoswap.product.models.dto.ProductResponseDTO;
 import com.ecoswap.ecoswap.product.models.entities.Product;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -63,6 +64,11 @@ public class ProductController {
     @DeleteMapping("/product/{id}")
     public void deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
+    }
+
+    @GetMapping("/products/counts")
+    public ResponseEntity<Long> countProduct(){
+        return ResponseEntity.ok(productService.countProduct());
     }
 
 }

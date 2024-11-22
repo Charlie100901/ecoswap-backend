@@ -2,11 +2,9 @@ package com.ecoswap.ecoswap.user.controllers;
 
 import java.util.List;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.ecoswap.ecoswap.user.models.dto.UserDtoRequest;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.ecoswap.ecoswap.user.models.dto.UserDTO;
 import com.ecoswap.ecoswap.user.services.UserService;
@@ -22,7 +20,7 @@ public class UserController {
     }
 
     @PostMapping("user")
-    public void userCreate(UserDTO userDTO){
+    public void userCreate(@RequestBody UserDtoRequest userDTO){
         userService.createUser(userDTO);
     }
 
@@ -39,6 +37,25 @@ public class UserController {
     @GetMapping("user/me")
     public UserDTO getCurrentUser () {
         return userService.getCurrentUser();
+    }
+
+    @GetMapping("users/count")
+    public Long countUsers(){
+        return userService.countUsers();
+    }
+
+    @PutMapping("user/{id}")
+    public ResponseEntity<UserDTO> updateUserById(
+            @PathVariable Long id,
+            @RequestBody UserDTO updatedUserDTO) {
+        UserDTO updatedUser = userService.updateUserById(id, updatedUserDTO);
+        return ResponseEntity.ok(updatedUser);
+    }
+
+    @DeleteMapping("user/{id}")
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

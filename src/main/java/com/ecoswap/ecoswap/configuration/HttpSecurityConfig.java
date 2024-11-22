@@ -40,20 +40,29 @@ public class HttpSecurityConfig {
 
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/product/create").authenticated();
                     authorize.requestMatchers(HttpMethod.GET, "/api/v1/product").permitAll();
-                    authorize.requestMatchers(HttpMethod.DELETE, "/product/{id}").authenticated();
+                    authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/product/{id}").authenticated();
                     authorize.requestMatchers(HttpMethod.PUT, "/product/{id}").authenticated();
                     authorize.requestMatchers(HttpMethod.GET, "/api/v1/product/{id}").permitAll();
                     authorize.requestMatchers(HttpMethod.GET, "api/v1/product/recent").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET, "api/v1/products/counts").permitAll();
 
                     authorize.requestMatchers(HttpMethod.GET, "/images/**").permitAll();
 
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/create-exchange").authenticated();
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/select-exchange").authenticated();
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/exchanges").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET, "/api/v1/exchanges/counts").permitAll();
 
 
                     authorize.requestMatchers(HttpMethod.GET,"/api/v1/user").authenticated();
                     authorize.requestMatchers(HttpMethod.GET, "/api/v1/user/me").authenticated();
+                    authorize.requestMatchers(HttpMethod.GET, "/api/v1/users/count").permitAll();
+                    authorize.requestMatchers(HttpMethod.POST, "/api/v1/user").permitAll();
+                    authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/user/{id}").permitAll();
+                    authorize.requestMatchers(HttpMethod.PUT, "/api/v1/user/{id}").permitAll();
+
+
+
 
 
 
