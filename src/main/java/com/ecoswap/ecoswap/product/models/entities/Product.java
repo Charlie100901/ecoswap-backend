@@ -28,7 +28,6 @@ public class Product {
     @NotNull
     private String title;
     @NotNull
-    @Size(min = 20, max = 500)
     private String description;
     @NotNull
     private String category;

@@ -17,6 +17,7 @@ public interface ProductService {
     ProductResponseDTO getProductsByCategory(String category, int page, int size);
     List<ProductDTO> getProductsByUser();
     List<ProductDTO> getRecentlyProducts();
+    Long countProduct();
 
     void markProductsAsInactiveFromCompletedExchanges();
 

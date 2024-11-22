@@ -3,6 +3,8 @@ package com.ecoswap.ecoswap.user.services.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.ecoswap.ecoswap.user.models.dto.UserDtoRequest;
+import com.ecoswap.ecoswap.user.models.entities.Role;
 import org.aspectj.apache.bcel.generic.RET;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -37,9 +39,15 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void createUser(UserDTO userDTO) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'createUser'");
+    public void createUser(UserDtoRequest userDTO) {
+        User user = new User();
+        user.setName(userDTO.getName());
+        user.setEmail(userDTO.getEmail());
+        user.setPassword(userDTO.getPassword());
+        user.setAddress(userDTO.getAddress());
+        user.setCellphoneNumber(userDTO.getCellphoneNumber());
+        user.setRole(Role.valueOf("USER"));
+        userRepository.save(user);
     }
 
     @Override
@@ -50,15 +58,26 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public ProductDTO updateUserById(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateUserById'");
+    public UserDTO updateUserById(Long id, UserDTO updatedUserDTO) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
+
+        user.setName(updatedUserDTO.getName());
+        user.setEmail(updatedUserDTO.getEmail());
+        user.setAddress(updatedUserDTO.getAddress());
+        user.setCellphoneNumber(updatedUserDTO.getCellphoneNumber());
+
+        User updatedUser = userRepository.save(user);
+        return new UserDTO(updatedUser.getId(), updatedUser.getName(), updatedUser.getEmail(),
+                updatedUser.getAddress(), updatedUser.getCellphoneNumber());
+
     }
 
     @Override
     public void deleteUser(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteUser'");
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
+        userRepository.delete(user);
     }
 
     @Override
@@ -75,6 +94,11 @@ public class UserServiceImpl implements UserService{
         userDTO.setEmail(usuarioAutenticado.getEmail());
 
         return userDTO;
+    }
+
+    @Override
+    public long countUsers() {
+        return userRepository.count();
     }
 
 }

@@ -9,4 +9,5 @@ public interface ExchangeService {
     ExchangeDTO createRequestExchange(ExchangeDTO requestExchange);
     ExchangeDTO selectExchangeRequest(ExchangeDTO requestExchange);
     List<ExchangeDTO> findByProductTo(ProductDTO productDTO);
+    Long countExchanges();
 }

@@ -256,6 +256,11 @@ public class ProductServicesImpl implements ProductService{
     }
 
     @Override
+    public Long countProduct() {
+        return productRepository.count();
+    }
+
+    @Override
     @Scheduled(fixedRate = 3000)
     public void markProductsAsInactiveFromCompletedExchanges() {
         List<Exchange> completedExchanges = exchangeRepository.findByStatus("completado");

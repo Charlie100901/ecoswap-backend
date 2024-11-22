@@ -93,4 +93,9 @@ public class ExchangeServiceImpl implements ExchangeService {
                 .collect(Collectors.toList());
 
     }
+
+    @Override
+    public Long countExchanges() {
+        return exchangeRepository.count();
+    }
 }
