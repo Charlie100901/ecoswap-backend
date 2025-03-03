@@ -61,6 +61,16 @@ public class HttpSecurityConfig {
                     authorize.requestMatchers(HttpMethod.DELETE, "/api/v1/user/{id}").permitAll();
                     authorize.requestMatchers(HttpMethod.PUT, "/api/v1/user/{id}").permitAll();
 
+                    authorize.requestMatchers(HttpMethod.POST, "/api/notifications/send").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET, "/api/notifications/unread/{userId}").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET,"/ws/**").permitAll();
+                    authorize.requestMatchers(HttpMethod.POST,"/ws/**").permitAll();
+
+                    authorize.requestMatchers(HttpMethod.GET,"/ws").permitAll();
+                    authorize.requestMatchers(HttpMethod.POST,"/ws").permitAll();
+
+                    authorize.requestMatchers(HttpMethod.GET,"/ws/**", "/topic/**", "/app/**").permitAll();
+                    authorize.requestMatchers(HttpMethod.POST,"/ws/**", "/topic/**", "/app/**").permitAll();
 
 
 

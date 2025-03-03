@@ -5,9 +5,12 @@ import com.ecoswap.ecoswap.exchange.models.dto.ExchangeDTO;
 import com.ecoswap.ecoswap.exchange.models.entities.Exchange;
 import com.ecoswap.ecoswap.exchange.repositories.ExchangeRepository;
 import com.ecoswap.ecoswap.exchange.services.ExchangeService;
+import com.ecoswap.ecoswap.notification.services.NotificationService;
 import com.ecoswap.ecoswap.product.models.dto.ProductDTO;
 import com.ecoswap.ecoswap.product.models.entities.Product;
 import com.ecoswap.ecoswap.product.repositories.ProductRepository;
+import com.ecoswap.ecoswap.user.models.dto.UserDTO;
+
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +29,9 @@ public class ExchangeServiceImpl implements ExchangeService {
     @Autowired
     private ProductRepository productRepository;
 
+    @Autowired
+    private NotificationService notificationService;
+
     @Override
     public ExchangeDTO createRequestExchange(ExchangeDTO requestExchange) {
         Exchange exchange = new Exchange();
@@ -36,6 +42,18 @@ public class ExchangeServiceImpl implements ExchangeService {
         exchange.setProductFrom(requestExchange.getProductFrom());
 
         exchangeRepository.save(exchange);
+
+        Long productToId = requestExchange.getProductTo().getId();
+        Optional<Product> productTo = productRepository.findById(productToId);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(productTo.get().getUser().getId());
+        userDTO.setName(productTo.get().getUser().getName());
+        userDTO.setEmail(productTo.get().getUser().getEmail());
+        userDTO.setAddress(productTo.get().getUser().getAddress());
+        userDTO.setCellphoneNumber(productTo.get().getUser().getCellphoneNumber());
+
+        notificationService.sendNotification(userDTO, "Tienes una nueva solicitud de intercambio para tu producto: " + 
+                        productTo.get().getTitle());
 
         ExchangeDTO responseExchange = new ExchangeDTO();
         responseExchange.setId(exchange.getId());

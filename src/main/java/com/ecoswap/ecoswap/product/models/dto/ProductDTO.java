@@ -2,6 +2,7 @@ package com.ecoswap.ecoswap.product.models.dto;
 
 import java.time.LocalDate;
 
+import com.ecoswap.ecoswap.user.models.dto.UserDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,4 +20,5 @@ public class ProductDTO {
     private String conditionProduct;
     private String imageProduct;
     private LocalDate releaseDate;
+    private UserDTO user;
 }

@@ -2,6 +2,8 @@ INSERT INTO user(address, cellphone_number, email, name, password, role) VALUES 
 INSERT INTO user(address, cellphone_number, email, name, password, role) VALUES ('san jose', 4545, 'carlos@gmail.com', 'carlos de la rosa', '$2a$12$gg1BvSFnX307c1AJKJ26xeqcasUAqm9TY5FShw52jATJD35.3E68e', 'USER');
 INSERT INTO user(address, cellphone_number, email, name, password, role) VALUES ('simom bolivar', 31221412, 'jesus@gmail.com', 'jesus santana', '$2a$13$SX/Y0ryLLUJWvQBOt6Agd.CmtDFLwk2nXy2NElxwZrcxmkyFbqlsa', 'USER');
 INSERT INTO user(address, cellphone_number, email, name, password, role) VALUES ('el pozon', 4545, 'daniel@gmail.com', 'daniel', '$2a$13$JDAJvtPEM7cXoA3.LrZK6.sGdjoh8RKDzDXPKV9SVQmi0FL17P2qC', 'USER');
+INSERT INTO user(address, cellphone_number, email, name, password, role) VALUES ('chipre', 4545, 'camilo@gmail.com', 'Camilo Cabrales', '$2a$12$FREkxRSBOfBtXkQBfbHQbeHs8nrclHxCCKaajHlrnLP1wUxDWYcFe', 'USER');
+INSERT INTO user(address, cellphone_number, email, name, password, role) VALUES ('chile', 4545, 'oscar@gmail.com', 'Oscar Castillo', '$2a$12$Ub3JwkMuUGHBdkmhl96ZZuFEISafd3J29QnO/8DXFwge0fBr/Rf3m', 'USER');
 
 
 INSERT INTO product(category, condition_product ,description, product_status, title, user_id, release_date, image_product) VALUES ('Electrónica y Tecnología','nuevo' , 'PC Gamer de alto rendimiento con procesador rápido, tarjeta gráfica potente, almacenamiento SSD y RAM de 16GB. Ideal para gaming', 'activo', 'pc gamer', 1, '2024-11-05', 'http://localhost:8080/images/pc-gamer.jpeg' );
