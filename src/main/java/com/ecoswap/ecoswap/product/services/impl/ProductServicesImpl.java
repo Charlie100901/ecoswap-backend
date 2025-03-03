@@ -58,7 +58,14 @@ public class ProductServicesImpl implements ProductService{
                         product.getCategory(),
                         product.getConditionProduct(),
                         product.getImageProduct(),
-                        product.getReleaseDate()
+                        product.getReleaseDate(),
+                        new UserDTO(
+                                product.getId(),
+                                product.getUser().getName(),
+                                product.getUser().getEmail(),
+                                product.getUser().getAddress(),
+                                product.getUser().getCellphoneNumber()
+                        )
                 ))
                 .collect(Collectors.toList());
 
@@ -173,6 +180,8 @@ public class ProductServicesImpl implements ProductService{
     public ProductDTO getProductById(Long id) {
         Product product = productRepository.findById(id)
             .orElseThrow(() -> new ProductNotFoundException("No existe el producto con id " + id));
+
+        UserDTO userDTO = new UserDTO(product.getId(), product.getUser().getName(), product.getUser().getEmail(), product.getUser().getEmail(), product.getUser().getCellphoneNumber());
     
         return new ProductDTO(
                 product.getId(),
@@ -181,7 +190,8 @@ public class ProductServicesImpl implements ProductService{
                 product.getCategory(),
                 product.getConditionProduct(),
                 product.getImageProduct(),
-                LocalDate.now()
+                LocalDate.now(),
+                userDTO
         );
     }
 
