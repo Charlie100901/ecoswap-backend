@@ -24,7 +24,6 @@ public class NotificationServiceImpl implements NotificationService {
 
     @Override
     public void sendNotification(UserDTO receiver, String message) {
-        // Crear el usuario receptor
         User user = new User();
         user.setId(receiver.getId());
         user.setName(receiver.getName());
@@ -32,7 +31,6 @@ public class NotificationServiceImpl implements NotificationService {
         user.setEmail(receiver.getEmail());
         user.setCellphoneNumber(receiver.getCellphoneNumber());
 
-        // Crear la notificación y guardarla en la BD
         Notification notification = new Notification();
         notification.setReceiver(user);
         notification.setMessage(message);
@@ -40,7 +38,6 @@ public class NotificationServiceImpl implements NotificationService {
 
         notificationRepository.save(notification);
 
-        // Enviar notificación en tiempo real por WebSockets
         NotificationDTO notificationDTO = new NotificationDTO(notification.getId(), notification.getReceiver().getId(), message, false, notification.getCreatedAt());
         messagingTemplate.convertAndSend("/topic/notifications/" + receiver.getId(), notificationDTO);
         System.out.println("📤 Mensaje enviado a /topic/notifications: " + message);
