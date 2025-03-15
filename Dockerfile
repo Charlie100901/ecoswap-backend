@@ -1,14 +1,17 @@
-# Usar la imagen base de OpenJDK
-FROM openjdk:17-jdk-slim
-
-# Crear el directorio de trabajo dentro del contenedor
+FROM maven:3.8-openjdk-17 AS build
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
 
-# Copiar el archivo JAR generado en el build de Spring Boot
-COPY target/*.jar app.jar
+FROM openjdk:17-jdk-slim
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
 
-# Exponer el puerto donde corre la app
-EXPOSE 8080
+# Crear directorio para imágenes
+RUN mkdir -p /app/images
 
-# Comando para ejecutar la app
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# Variables de entorno configurables
+ENV SPRING_PROFILES_ACTIVE=docker
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
