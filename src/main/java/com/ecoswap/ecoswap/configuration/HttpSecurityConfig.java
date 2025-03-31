@@ -72,6 +72,12 @@ public class HttpSecurityConfig {
                     authorize.requestMatchers(HttpMethod.GET,"/ws/**", "/topic/**", "/app/**").permitAll();
                     authorize.requestMatchers(HttpMethod.POST,"/ws/**", "/topic/**", "/app/**").permitAll();
 
+                    authorize.requestMatchers(HttpMethod.GET, "/api/v1/chat/message/exchange/{receiverId}").permitAll();
+                    authorize.requestMatchers(HttpMethod.POST, "/api/v1/chat/message/create").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET, "/api/v1/chat/message").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET, "/message/exchange/{exchangeId}").permitAll();
+                    
+
 
 
 
