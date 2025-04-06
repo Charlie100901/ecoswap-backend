@@ -33,6 +33,23 @@ public class HttpSecurityConfig {
                 .authenticationProvider(authenticationProvider)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> {
+
+                    // Swagger UI v3 (OpenAPI)
+                    authorize.requestMatchers(
+                            "/swagger-ui/**",
+                            "/swagger-ui.html",
+                            "/swagger-resources/**",
+                            "/swagger-resources",
+                            "/v3/api-docs/**",
+                            "/v3/api-docs.yaml",
+                            "/webjars/**",
+                            "/actuator/health",
+                            "/configuration/**").permitAll();
+
+                    // Permitir solicitudes OPTIONS para CORS
+                    authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
+
+
                     authorize.requestMatchers(HttpMethod.POST, "/auth/login").permitAll();
 
                     authorize.requestMatchers(HttpMethod.POST, "/auth/register").permitAll();
@@ -52,6 +69,8 @@ public class HttpSecurityConfig {
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/select-exchange").authenticated();
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/exchanges").permitAll();
                     authorize.requestMatchers(HttpMethod.GET, "/api/v1/exchanges/counts").permitAll();
+                    authorize.requestMatchers(HttpMethod.GET, "/api/v1/exchanges").permitAll();
+
 
 
                     authorize.requestMatchers(HttpMethod.GET,"/api/v1/user").authenticated();
@@ -76,7 +95,11 @@ public class HttpSecurityConfig {
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/chat/message/create").permitAll();
                     authorize.requestMatchers(HttpMethod.GET, "/api/v1/chat/message").permitAll();
                     authorize.requestMatchers(HttpMethod.GET, "/message/exchange/{exchangeId}").permitAll();
-                    
+
+
+                    authorize.requestMatchers(HttpMethod.POST, "/api/v1/prediction").permitAll();
+
+
 
 
 
