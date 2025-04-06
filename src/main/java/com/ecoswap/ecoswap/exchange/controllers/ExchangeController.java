@@ -37,4 +37,9 @@ public class ExchangeController {
         return ResponseEntity.ok(exchangeService.countExchanges());
     }
 
+    @GetMapping("/exchanges")
+    public ResponseEntity<List<ExchangeDTO>> getAllExchanges(){
+        return ResponseEntity.ok(exchangeService.getAllExchange());
+    }
+
 }

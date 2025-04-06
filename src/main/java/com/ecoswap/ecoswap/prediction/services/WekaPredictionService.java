@@ -1,17 +1,20 @@
 package com.ecoswap.ecoswap.prediction.services;
+
+import com.ecoswap.ecoswap.exchange.models.dto.ExchangeDTO;
+import com.ecoswap.ecoswap.exchange.repositories.ExchangeRepository;
+import com.ecoswap.ecoswap.prediction.models.dto.PredictionResult;
+import com.ecoswap.ecoswap.product.models.entities.Product;
+import com.ecoswap.ecoswap.product.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import weka.classifiers.Classifier;
-import weka.core.Instance;
-import weka.core.Instances;
-import weka.core.SerializationHelper;
-import weka.core.Attribute;
-import weka.core.DenseInstance;
+import weka.core.*;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-
-import org.springframework.stereotype.Service;
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class WekaPredictionService {
@@ -19,79 +22,87 @@ public class WekaPredictionService {
     private Classifier classifier;
     private Instances datasetStructure;
 
+    @Autowired
+    private ProductRepository productRepository;
+
+    @Autowired
+    private ExchangeRepository exchangeRepository;
+
     public WekaPredictionService() {
         try {
-            // Cargar el modelo entrenado desde el classpath
             classifier = (Classifier) SerializationHelper.read(
-                getClass().getClassLoader().getResourceAsStream("dataset_ecoswap.model")
+                    getClass().getClassLoader().getResourceAsStream("dataset_ecoswap.model")
             );
 
-            // Leer el dataset ARFF desde el classpath
             BufferedReader reader = new BufferedReader(new InputStreamReader(
-                getClass().getClassLoader().getResourceAsStream("dataset_ecoswap.arff")
+                    getClass().getClassLoader().getResourceAsStream("dataset_ecoswap.arff")
             ));
-            datasetStructure = new Instances(reader);
+            datasetStructure = new Instances(reader, 1);
             datasetStructure.setClassIndex(datasetStructure.numAttributes() - 1);
             reader.close();
         } catch (Exception e) {
-            e.printStackTrace();
             throw new IllegalStateException("Error al inicializar WekaPredictionService: " + e.getMessage(), e);
         }
     }
 
-    public boolean predictExchangeSuccess(Long productId, int daysPublished, Long interactions, Long userSuccessHistory, String userRating, String location) {
+    public PredictionResult predictExchangeSuccess(Long productId, int daysPublished, Long interactions, Long userSuccessHistory, String userRating, String location) {
         try {
-            // Crear atributos
-            ArrayList<Attribute> attributes = new ArrayList<>();
-            attributes.add(new Attribute("product_id"));
-            attributes.add(new Attribute("days_published"));
-            attributes.add(new Attribute("interactions"));
-            attributes.add(new Attribute("user_success_history"));
-    
-            // Atributo categórico: user_rating
-            ArrayList<String> userRatingValues = new ArrayList<>();
-            userRatingValues.add("regular");
-            userRatingValues.add("malo");
-            userRatingValues.add("bueno");
-            attributes.add(new Attribute("user_rating", userRatingValues));
-    
-            // Atributo categórico: location
-            ArrayList<String> locationValues = new ArrayList<>();
-            locationValues.add("barranquilla");
-            locationValues.add("medellin");
-            locationValues.add("bogota");
-            locationValues.add("cartagena");
-            locationValues.add("cali");
-            locationValues.add("santa marta");
-            locationValues.add("riohacha");
-            attributes.add(new Attribute("location", locationValues));
-    
-            // Atributo de clase: exchange_successful
-            ArrayList<String> classValues = new ArrayList<>();
-            classValues.add("False");
-            classValues.add("True");
-            attributes.add(new Attribute("exchange_successful", classValues));
-    
-            // Crear dataset
-            Instances instances = new Instances("Predictions", attributes, 0);
-            instances.setClassIndex(instances.numAttributes() - 1);
-    
-            // Crear una nueva instancia
-            Instance newInstance = new DenseInstance(attributes.size());
-            newInstance.setValue(attributes.get(0), productId); // product_id
-            newInstance.setValue(attributes.get(1), daysPublished); // days_published
-            newInstance.setValue(attributes.get(2), interactions); // interactions
-            newInstance.setValue(attributes.get(3), userSuccessHistory); // user_success_history
-            newInstance.setValue(attributes.get(4), userRating); // user_rating (categórico)
-            newInstance.setValue(attributes.get(5), location); // location (categórico)
-            newInstance.setDataset(instances);
-    
-            // Realizar la predicción
+            Instance newInstance = new DenseInstance(datasetStructure.numAttributes());
+            newInstance.setDataset(datasetStructure);
+
+            newInstance.setValue(datasetStructure.attribute("product_id"), productId);
+            newInstance.setValue(datasetStructure.attribute("days_published"), daysPublished);
+            newInstance.setValue(datasetStructure.attribute("interactions"), interactions);
+            newInstance.setValue(datasetStructure.attribute("user_success_history"), userSuccessHistory);
+            newInstance.setValue(datasetStructure.attribute("user_rating"), userRating);
+            newInstance.setValue(datasetStructure.attribute("location"), location);
+
             double prediction = classifier.classifyInstance(newInstance);
-            return prediction == 1.0; // True si la predicción es "True"
+            double[] distribution = classifier.distributionForInstance(newInstance);
+
+            String predictedClass = datasetStructure.classAttribute().value((int) prediction);
+            boolean success = predictedClass.equalsIgnoreCase("True");
+
+            return new PredictionResult(success, distribution[datasetStructure.classAttribute().indexOfValue("True")]);
+
         } catch (Exception e) {
-            e.printStackTrace();
-            return false;
+            return new PredictionResult(false, 0.0);
         }
+    }
+
+    public Map<String, Object> generatePredictionResponse(ExchangeDTO requestExchange) {
+        Product productFrom = productRepository.findById(requestExchange.getProductFrom().getId())
+                .orElseThrow(() -> new IllegalStateException("El producto origen no existe."));
+        Product productTo = productRepository.findById(requestExchange.getProductTo().getId())
+                .orElseThrow(() -> new IllegalStateException("El producto destino no existe."));
+
+        int daysPublished = productFrom.getReleaseDate() != null ?
+                (int) java.time.temporal.ChronoUnit.DAYS.between(productFrom.getReleaseDate(), LocalDateTime.now()) : 0;
+
+        Long interactions = exchangeRepository.countByProductTo(productTo);
+        Long userSuccessHistory = exchangeRepository.countByProductTo_User(productTo.getUser().getId());
+
+        double userRating = 4.5;
+        String userRatingCategory = userRating >= 4.5 ? "bueno" : userRating >= 3.0 ? "regular" : "malo";
+
+        String location = "medellin"; // o puedes usar otro campo del producto
+
+        PredictionResult result = predictExchangeSuccess(
+                productTo.getId(), daysPublished, interactions, userSuccessHistory, userRatingCategory, location
+        );
+
+        String confidenceLevel = result.getProbability() > 0.8 ? "alto" :
+                result.getProbability() > 0.5 ? "medio" : "bajo";
+        String message = result.isPrediction()
+                ? "La predicción indica que el intercambio será exitoso."
+                : "La predicción indica que este intercambio no será exitoso.";
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("prediction", result.isPrediction());
+        response.put("probability", result.getProbability());
+        response.put("confidenceLevel", confidenceLevel);
+        response.put("message", message);
+
+        return response;
     }
 }

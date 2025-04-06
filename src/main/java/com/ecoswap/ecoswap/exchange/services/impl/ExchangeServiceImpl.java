@@ -16,7 +16,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Array;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,45 +45,6 @@ public class ExchangeServiceImpl implements ExchangeService {
 
     @Override
     public ExchangeDTO createRequestExchange(ExchangeDTO requestExchange) {
-        // Cargar los productos completos desde la base de datos
-        Product productFrom = productRepository.findById(requestExchange.getProductFrom().getId())
-        .orElseThrow(() -> new IllegalStateException("El producto origen no existe."));
-        Product productTo = productRepository.findById(requestExchange.getProductTo().getId())
-            .orElseThrow(() -> new IllegalStateException("El producto destino no existe."));
-
-        // Calcular los días publicados
-        int daysPublished = productFrom.getReleaseDate() != null ? 
-        (int) java.time.temporal.ChronoUnit.DAYS.between(productFrom.getReleaseDate(), LocalDateTime.now()) : 0;
-
-        // Obtener interacciones y éxitos del usuario
-        Long interactions = exchangeRepository.countByProductTo(productTo);
-        Long userSuccessHistory = exchangeRepository.countByProductTo_User(productTo.getUser().getId());
-
-        // Supongamos valores predeterminados para otros parámetros
-        double userRating = 4.5; // Rating predeterminado
-        String location = "cartagena"; // Ubicación predeterminada
-
-        String userRatingCategory;
-        if (userRating >= 4.5) {
-            userRatingCategory = "bueno";
-        } else if (userRating >= 3.0) {
-            userRatingCategory = "regular";
-        } else {
-            userRatingCategory = "malo";
-        }
-
-        // Realizar la predicción
-        boolean successPrediction = wekaPredictionService.predictExchangeSuccess(
-        productFrom.getId(), daysPublished, interactions, userSuccessHistory, userRatingCategory, location
-        );
-
-        // Si la predicción es negativa, rechazar la solicitud
-        if (!successPrediction) {
-            System.out.println("La predicción indica que este intercambio no será exitoso.");
-        }else {
-            System.out.println("La predicción indica que el intercambio será exitoso");
-        }
-
 
         Exchange exchange = new Exchange();
         exchange.setStatus("pendiente");
@@ -164,5 +127,23 @@ public class ExchangeServiceImpl implements ExchangeService {
     @Override
     public Long countExchanges() {
         return exchangeRepository.count();
+    }
+
+    @Override
+    public List<ExchangeDTO> getAllExchange() {
+        List<Exchange> exchanges =exchangeRepository.findAll();
+        List<ExchangeDTO> exchangeDTOS = new ArrayList<ExchangeDTO>();
+        for (Exchange exchange: exchanges){
+            ExchangeDTO exchangeDTO = new ExchangeDTO();
+            exchangeDTO.setId(exchange.getId());
+            exchangeDTO.setExchangeRequestedAt(exchange.getExchangeRequestedAt());
+            exchangeDTO.setExchangeRespondedAt(exchange.getExchangeRespondedAt());
+            exchangeDTO.setStatus(exchange.getStatus());
+            exchangeDTO.setProductFrom(exchange.getProductFrom());
+            exchangeDTO.setProductTo(exchange.getProductTo());
+            exchangeDTOS.add(exchangeDTO);
+        }
+
+        return exchangeDTOS;
     }
 }
