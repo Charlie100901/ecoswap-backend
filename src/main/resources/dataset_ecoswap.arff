@@ -1,0 +1,1667 @@
+@relation dataset_ecoswap
+
+@attribute product_id numeric
+@attribute days_published numeric
+@attribute interactions numeric
+@attribute user_success_history numeric
+@attribute user_rating {regular,malo,bueno}
+@attribute location {barranquilla,medellin,bogota,cartagena,cali,'santa marta',riohacha}
+@attribute exchange_successful {False,True}
+
+@data
+1509,73,76,151,regular,barranquilla,False
+1123,26,236,145,malo,medellin,True
+35,80,41,373,malo,barranquilla,False
+402,17,428,306,malo,bogota,True
+1286,33,356,268,regular,cartagena,False
+1706,3,150,478,malo,cali,False
+1911,35,28,307,bueno,cali,False
+1909,34,455,279,malo,'santa marta',True
+114,63,442,413,malo,'santa marta',True
+1167,57,128,127,regular,cartagena,False
+1418,24,363,118,regular,bogota,True
+1851,29,16,111,malo,bogota,False
+1933,3,401,302,malo,cali,True
+1845,90,86,328,malo,barranquilla,False
+225,54,284,414,bueno,cali,True
+1856,76,158,271,regular,barranquilla,False
+746,28,49,380,regular,cartagena,False
+834,34,5,404,regular,bogota,False
+794,49,483,460,regular,'santa marta',True
+1035,79,337,367,malo,cartagena,True
+875,5,124,476,malo,cartagena,False
+305,24,157,119,malo,barranquilla,False
+1874,81,445,424,regular,medellin,True
+1423,87,417,252,regular,riohacha,True
+467,13,496,102,malo,barranquilla,True
+1732,59,456,362,regular,'santa marta',True
+1728,40,201,341,malo,cartagena,True
+233,44,305,403,regular,cartagena,False
+1540,88,92,286,regular,cali,True
+947,8,422,306,regular,cali,True
+518,39,141,263,malo,barranquilla,False
+1654,15,154,177,regular,bogota,False
+1993,33,41,437,bueno,cali,True
+1221,60,312,175,bueno,bogota,True
+244,24,445,408,malo,'santa marta',True
+1220,97,70,61,regular,medellin,False
+925,12,497,372,bueno,'santa marta',True
+1727,79,454,409,malo,cali,True
+1995,40,397,162,malo,medellin,True
+445,49,21,464,malo,bogota,False
+136,44,66,489,malo,medellin,False
+1688,3,248,169,regular,riohacha,True
+869,97,359,190,bueno,riohacha,True
+1801,77,468,439,malo,medellin,False
+181,28,84,309,malo,cartagena,False
+1526,12,20,189,regular,medellin,False
+408,93,110,72,malo,medellin,False
+1348,55,410,428,bueno,'santa marta',True
+1799,2,201,432,regular,'santa marta',True
+1046,51,49,440,regular,cartagena,False
+1003,59,152,152,malo,'santa marta',True
+1541,83,270,360,bueno,cali,True
+37,62,204,176,malo,bogota,True
+1923,89,439,494,malo,'santa marta',True
+576,68,11,480,regular,cartagena,False
+1142,25,50,357,regular,'santa marta',True
+87,48,82,370,bueno,bogota,False
+96,82,59,458,bueno,riohacha,False
+695,92,321,470,regular,cartagena,True
+871,79,308,57,regular,riohacha,False
+1062,64,140,446,regular,cartagena,True
+1824,63,161,108,regular,barranquilla,False
+486,96,90,227,regular,barranquilla,False
+1356,57,405,498,bueno,riohacha,True
+706,56,161,175,malo,bogota,False
+1040,57,409,103,malo,barranquilla,True
+833,26,499,117,regular,bogota,True
+289,1,340,54,regular,cartagena,True
+1206,74,54,362,malo,riohacha,False
+624,52,196,323,bueno,medellin,True
+1264,63,24,329,malo,bogota,False
+1005,59,133,461,malo,cartagena,False
+1090,35,114,475,malo,cali,False
+1228,92,132,439,malo,'santa marta',False
+1427,14,127,363,bueno,bogota,True
+1764,33,134,463,malo,'santa marta',False
+1467,45,117,236,regular,bogota,False
+1704,17,176,499,regular,'santa marta',True
+1595,43,268,295,regular,medellin,True
+1531,61,372,72,malo,cali,False
+1358,88,192,350,malo,barranquilla,False
+301,20,498,157,malo,bogota,True
+1095,62,172,304,malo,bogota,False
+626,16,49,77,malo,cartagena,False
+1890,67,76,145,regular,cali,True
+1838,17,68,130,regular,riohacha,False
+1598,55,336,258,regular,barranquilla,True
+784,96,95,419,bueno,barranquilla,True
+1270,7,188,441,malo,cali,False
+1672,98,431,220,malo,barranquilla,True
+1056,20,190,352,bueno,medellin,False
+191,1,229,364,bueno,cartagena,True
+1248,63,20,216,malo,riohacha,False
+1226,37,111,189,malo,cartagena,False
+434,63,271,211,malo,medellin,False
+822,45,447,258,malo,cartagena,True
+614,49,353,158,regular,riohacha,True
+1208,6,209,56,regular,barranquilla,False
+1084,17,153,359,malo,bogota,False
+623,95,487,341,bueno,barranquilla,True
+285,16,178,295,malo,'santa marta',True
+889,66,470,85,regular,cali,True
+721,36,475,94,malo,riohacha,True
+1664,39,434,363,malo,barranquilla,True
+680,19,468,168,malo,medellin,True
+1684,98,474,74,bueno,barranquilla,True
+1209,72,462,255,regular,'santa marta',True
+1878,15,465,389,regular,medellin,True
+901,4,230,481,regular,cali,False
+982,25,444,248,regular,barranquilla,True
+1524,94,391,178,regular,medellin,True
+295,9,336,119,regular,bogota,False
+1736,38,191,371,regular,bogota,True
+1492,98,65,309,regular,'santa marta',False
+718,80,361,313,malo,bogota,True
+973,89,247,484,bueno,cali,True
+643,95,259,103,malo,riohacha,False
+840,54,382,139,malo,medellin,False
+824,4,160,380,malo,bogota,False
+18,30,482,139,regular,bogota,True
+1759,40,333,380,regular,'santa marta',False
+523,69,214,355,malo,bogota,True
+1596,40,386,338,malo,riohacha,False
+816,17,31,142,regular,barranquilla,False
+1730,5,124,269,regular,medellin,True
+808,3,173,127,malo,medellin,True
+1502,99,98,178,regular,'santa marta',False
+1833,20,443,187,malo,cali,True
+1271,82,60,267,malo,bogota,False
+715,61,114,356,regular,bogota,False
+1811,95,275,341,bueno,barranquilla,True
+504,29,440,297,malo,medellin,True
+1685,57,496,359,regular,barranquilla,True
+1544,21,489,104,bueno,barranquilla,True
+1043,75,463,362,regular,barranquilla,True
+1234,40,293,118,bueno,riohacha,True
+1821,74,286,65,regular,riohacha,True
+750,90,429,327,regular,cali,False
+1591,45,42,157,malo,cali,False
+1961,77,302,174,malo,medellin,False
+414,24,3,463,bueno,bogota,False
+1329,66,138,97,bueno,medellin,True
+827,32,254,60,malo,riohacha,False
+1636,5,269,462,malo,cali,True
+69,36,397,77,regular,medellin,True
+1776,13,328,97,bueno,cartagena,True
+1538,62,214,393,bueno,cartagena,True
+1177,74,261,462,malo,bogota,False
+1401,20,336,92,regular,cali,True
+1144,97,463,52,malo,'santa marta',True
+938,56,112,222,malo,'santa marta',False
+359,4,245,220,malo,'santa marta',False
+615,12,164,392,regular,medellin,False
+1698,20,431,282,malo,cartagena,False
+1610,42,8,77,malo,riohacha,False
+264,19,179,299,malo,medellin,False
+948,99,42,107,regular,cartagena,False
+1385,7,36,390,malo,barranquilla,True
+1947,71,241,163,malo,cartagena,True
+8,87,406,68,malo,cartagena,True
+354,97,169,257,regular,cartagena,True
+696,72,121,183,regular,medellin,False
+1042,79,450,406,malo,medellin,True
+21,64,428,57,malo,medellin,True
+1734,88,343,222,bueno,bogota,True
+291,12,384,69,malo,bogota,True
+1975,33,318,202,regular,medellin,False
+735,16,419,477,regular,cali,True
+892,75,229,475,bueno,bogota,True
+907,27,376,398,regular,riohacha,True
+797,98,25,273,regular,riohacha,False
+282,42,184,222,malo,bogota,False
+1717,67,381,433,bueno,cartagena,True
+597,96,459,285,regular,cali,True
+1497,56,22,412,regular,riohacha,False
+1804,39,206,450,regular,cartagena,False
+815,83,141,55,regular,riohacha,False
+507,69,452,124,malo,medellin,True
+1862,79,50,427,regular,'santa marta',False
+914,21,242,487,malo,bogota,True
+1489,39,494,235,malo,barranquilla,True
+1527,19,154,493,regular,medellin,False
+567,81,465,454,malo,'santa marta',True
+49,39,459,292,regular,cartagena,True
+1483,21,423,141,malo,medellin,True
+88,15,454,360,malo,riohacha,True
+1670,62,395,111,malo,medellin,True
+391,67,143,50,regular,cali,False
+781,33,310,291,regular,cartagena,True
+1866,58,325,405,malo,riohacha,False
+1997,97,267,215,regular,medellin,True
+1794,53,110,78,bueno,riohacha,True
+1452,76,87,258,malo,cartagena,False
+71,4,301,133,malo,cali,True
+479,23,420,59,regular,bogota,True
+1185,56,362,332,malo,riohacha,False
+738,75,143,139,regular,bogota,False
+1186,15,354,385,regular,cali,True
+687,19,115,332,malo,barranquilla,False
+1939,60,136,487,malo,riohacha,False
+174,66,318,463,regular,riohacha,True
+881,74,116,291,malo,'santa marta',False
+286,90,407,198,malo,bogota,True
+1425,81,7,483,regular,cali,False
+1789,31,102,258,regular,'santa marta',False
+810,23,12,351,bueno,cartagena,False
+728,49,190,206,regular,bogota,False
+820,1,477,157,regular,cartagena,True
+508,47,374,410,malo,cali,False
+217,2,264,273,bueno,bogota,True
+1650,65,196,369,malo,'santa marta',True
+1173,86,144,296,malo,barranquilla,False
+1233,78,154,383,regular,bogota,False
+1027,24,8,297,regular,cartagena,False
+6,21,116,217,bueno,bogota,True
+155,77,225,444,bueno,medellin,False
+1900,6,232,266,regular,'santa marta',False
+661,50,36,458,malo,barranquilla,False
+509,94,263,253,bueno,barranquilla,True
+1622,99,275,461,regular,cali,False
+249,11,457,329,malo,barranquilla,True
+1096,60,288,303,malo,bogota,True
+1137,97,29,122,malo,riohacha,True
+930,78,308,148,regular,medellin,False
+1813,60,398,111,malo,riohacha,False
+676,4,145,395,malo,bogota,False
+1570,79,197,463,regular,bogota,False
+1920,72,472,325,bueno,riohacha,True
+292,69,126,474,malo,'santa marta',True
+1617,13,260,176,bueno,medellin,True
+80,90,221,345,malo,'santa marta',False
+1507,26,167,170,regular,cartagena,False
+139,35,420,56,regular,riohacha,True
+585,73,320,347,regular,bogota,True
+697,61,286,440,malo,barranquilla,False
+1338,29,493,132,bueno,'santa marta',True
+578,75,457,143,malo,cali,True
+1815,88,422,381,bueno,cali,True
+1659,59,476,318,regular,barranquilla,True
+1414,53,107,96,bueno,cartagena,False
+1599,87,387,175,malo,cali,True
+686,90,348,235,regular,cartagena,True
+120,33,220,384,regular,barranquilla,True
+1844,22,110,395,malo,riohacha,False
+1189,5,10,289,malo,'santa marta',False
+197,72,164,171,regular,medellin,False
+111,1,350,171,bueno,bogota,True
+532,69,121,205,malo,cali,False
+1200,26,393,477,regular,cartagena,True
+1539,80,116,202,regular,cali,False
+1638,94,260,403,malo,bogota,False
+212,62,350,108,regular,bogota,True
+1061,14,164,218,malo,cali,False
+419,36,450,308,regular,bogota,True
+33,92,223,195,bueno,'santa marta',True
+759,27,336,74,regular,riohacha,True
+745,24,239,483,malo,medellin,True
+1304,49,303,488,bueno,medellin,True
+473,92,239,386,malo,riohacha,True
+655,7,286,307,regular,cartagena,False
+1718,92,272,97,malo,cali,False
+529,58,10,426,malo,barranquilla,True
+1941,20,380,353,regular,cali,False
+1740,90,409,69,regular,cartagena,True
+1991,92,423,317,regular,'santa marta',True
+157,63,282,418,regular,bogota,False
+42,55,318,461,bueno,medellin,True
+1306,1,313,268,regular,cartagena,True
+108,71,391,424,malo,'santa marta',True
+670,65,446,78,bueno,riohacha,True
+633,53,160,114,malo,'santa marta',False
+28,89,390,264,bueno,barranquilla,True
+1818,83,164,318,regular,cartagena,True
+1854,99,369,244,regular,riohacha,True
+1097,50,435,58,regular,cartagena,True
+511,69,385,128,regular,bogota,False
+1166,38,281,468,malo,'santa marta',False
+531,1,378,206,regular,bogota,True
+864,51,260,385,malo,cartagena,False
+279,23,185,403,malo,riohacha,True
+541,84,293,477,malo,'santa marta',False
+167,36,2,370,malo,'santa marta',False
+1008,53,232,320,bueno,cartagena,True
+591,36,42,90,regular,cartagena,False
+166,29,334,253,bueno,bogota,True
+563,46,226,443,malo,cali,True
+789,63,310,297,bueno,medellin,True
+769,46,130,370,malo,cali,False
+90,78,211,406,malo,medellin,True
+1224,68,186,438,malo,riohacha,False
+1312,56,260,197,malo,cali,True
+884,88,256,135,regular,cartagena,True
+525,52,393,474,regular,riohacha,True
+345,8,446,112,regular,cali,True
+521,23,118,392,regular,bogota,False
+27,22,123,480,regular,medellin,False
+144,3,371,242,regular,barranquilla,True
+679,31,136,389,regular,'santa marta',False
+54,14,314,496,malo,bogota,False
+367,93,102,253,regular,cartagena,False
+1537,12,79,101,bueno,'santa marta',True
+1191,47,384,495,bueno,bogota,True
+297,19,234,420,bueno,medellin,False
+1426,81,70,367,regular,cartagena,False
+231,2,204,436,malo,riohacha,False
+835,54,467,301,malo,cartagena,True
+1059,1,266,469,malo,cali,True
+1723,98,248,55,bueno,bogota,True
+761,17,436,350,bueno,bogota,True
+1229,31,20,146,malo,cartagena,False
+1175,10,129,265,malo,cartagena,False
+522,10,277,137,malo,cali,True
+1642,14,59,467,regular,'santa marta',False
+1793,32,83,93,regular,'santa marta',False
+895,80,183,265,malo,cartagena,False
+853,51,329,309,malo,barranquilla,True
+206,79,270,245,regular,medellin,True
+1281,25,30,367,regular,barranquilla,False
+1981,88,265,188,bueno,bogota,False
+829,92,60,205,malo,bogota,False
+99,26,202,343,bueno,cartagena,True
+993,8,8,448,regular,medellin,False
+1417,86,250,415,bueno,bogota,True
+1835,68,222,444,regular,'santa marta',True
+692,92,360,271,malo,riohacha,True
+1474,64,81,237,regular,cali,False
+653,58,354,151,regular,riohacha,True
+771,6,466,224,regular,cali,True
+946,1,413,163,regular,riohacha,True
+1,52,233,382,bueno,cartagena,True
+1710,89,139,230,malo,cali,True
+1953,60,237,305,regular,cartagena,True
+1372,78,100,465,regular,cali,False
+1806,96,73,264,bueno,bogota,True
+1514,89,444,251,regular,'santa marta',True
+1143,17,95,294,regular,cartagena,False
+400,2,497,250,bueno,cali,True
+832,39,287,321,malo,cali,True
+12,24,359,158,regular,bogota,True
+1588,24,238,134,bueno,cartagena,True
+1227,72,381,450,malo,'santa marta',True
+7,83,154,157,regular,medellin,False
+1969,95,90,68,malo,riohacha,False
+559,29,175,365,malo,barranquilla,False
+1315,32,47,133,regular,barranquilla,False
+262,90,161,298,regular,medellin,False
+1262,41,376,453,malo,cali,True
+749,36,82,77,malo,medellin,False
+1904,3,276,281,bueno,riohacha,False
+1439,87,426,213,regular,bogota,True
+921,21,160,138,regular,cartagena,True
+838,12,345,369,malo,barranquilla,False
+113,88,159,237,regular,'santa marta',True
+1378,54,364,379,regular,barranquilla,True
+1199,36,13,144,regular,medellin,False
+1009,22,314,470,regular,barranquilla,True
+995,83,200,165,regular,riohacha,False
+497,67,71,108,malo,cartagena,False
+663,66,333,160,malo,bogota,False
+1253,21,221,440,regular,barranquilla,False
+1516,43,138,70,malo,'santa marta',False
+1168,97,229,363,regular,medellin,False
+1359,87,261,117,regular,riohacha,False
+1150,51,278,224,malo,bogota,False
+999,52,109,90,malo,medellin,False
+1796,39,387,120,malo,barranquilla,True
+855,64,190,420,regular,cali,False
+82,34,309,130,malo,medellin,False
+1482,29,169,384,regular,riohacha,True
+1567,86,178,475,regular,barranquilla,False
+1750,81,302,255,malo,cartagena,False
+1621,96,246,431,malo,bogota,False
+801,55,392,95,malo,'santa marta',True
+179,6,231,124,regular,riohacha,False
+1520,35,319,133,regular,barranquilla,True
+955,90,17,364,malo,medellin,False
+261,19,325,263,regular,cartagena,False
+1054,84,378,228,malo,cali,True
+625,83,269,52,regular,bogota,False
+1454,86,421,439,bueno,riohacha,True
+1105,1,222,160,regular,cartagena,False
+1666,63,211,152,bueno,medellin,False
+1010,21,415,434,regular,barranquilla,True
+207,59,80,323,malo,riohacha,False
+1870,46,451,486,regular,cartagena,True
+1631,56,63,244,regular,'santa marta',False
+1299,20,116,123,regular,'santa marta',False
+1836,91,41,256,malo,riohacha,False
+1775,41,100,256,malo,barranquilla,False
+1278,51,152,107,regular,'santa marta',False
+1393,36,220,428,bueno,'santa marta',False
+124,7,444,409,regular,cali,True
+388,95,65,341,malo,barranquilla,False
+1476,54,61,217,malo,cartagena,False
+1692,54,469,135,malo,barranquilla,True
+1459,6,345,493,regular,riohacha,True
+399,27,224,177,bueno,'santa marta',False
+998,6,385,441,malo,barranquilla,True
+981,44,401,237,malo,bogota,True
+1962,81,369,187,malo,medellin,False
+1203,69,234,425,bueno,barranquilla,False
+1410,38,329,294,regular,riohacha,True
+1708,99,325,436,malo,medellin,False
+1028,95,320,165,regular,riohacha,True
+1183,88,224,388,malo,riohacha,False
+1198,36,112,197,regular,riohacha,False
+1608,33,220,250,regular,barranquilla,False
+1724,76,156,253,malo,barranquilla,False
+991,86,87,411,regular,'santa marta',False
+666,37,303,317,malo,cartagena,True
+1695,49,34,413,bueno,cartagena,False
+1867,87,304,440,regular,riohacha,False
+785,49,270,54,regular,cartagena,True
+401,90,291,176,malo,riohacha,False
+652,74,291,214,regular,barranquilla,False
+153,90,21,476,bueno,cartagena,False
+222,2,64,354,malo,riohacha,True
+1783,38,369,406,malo,cali,True
+1365,97,231,434,malo,medellin,False
+1290,22,173,436,regular,cali,True
+412,50,430,433,malo,riohacha,True
+274,11,126,423,bueno,cali,False
+1321,30,124,455,bueno,riohacha,False
+510,62,310,98,malo,riohacha,True
+1726,9,423,234,malo,riohacha,False
+1256,53,216,63,regular,riohacha,False
+1052,68,169,52,regular,riohacha,False
+45,51,111,162,regular,barranquilla,False
+1145,66,499,386,malo,riohacha,True
+1236,86,469,425,bueno,barranquilla,True
+1364,51,126,132,malo,'santa marta',False
+313,99,193,265,regular,riohacha,False
+1337,8,118,114,regular,cartagena,False
+431,66,463,473,malo,bogota,True
+1330,92,50,375,malo,cartagena,False
+1616,30,101,295,bueno,barranquilla,False
+44,3,318,133,malo,cartagena,False
+1307,96,118,206,regular,riohacha,False
+1689,6,218,361,malo,cali,True
+369,6,132,218,regular,barranquilla,True
+632,85,27,487,bueno,cartagena,False
+1416,99,338,274,regular,barranquilla,True
+1858,29,35,178,malo,riohacha,False
+1585,17,47,450,malo,bogota,False
+421,20,412,237,malo,riohacha,True
+937,86,52,323,malo,riohacha,False
+1342,10,51,128,bueno,bogota,False
+1583,18,55,456,regular,barranquilla,True
+1958,72,189,257,malo,barranquilla,False
+1076,2,11,428,bueno,riohacha,False
+1703,62,279,196,regular,cartagena,False
+1555,59,387,418,malo,medellin,True
+468,30,373,324,malo,bogota,True
+1817,70,317,494,regular,medellin,False
+1300,86,113,215,malo,bogota,False
+1479,53,28,301,bueno,bogota,False
+1098,78,174,188,malo,medellin,True
+1247,1,429,96,malo,bogota,True
+1102,76,483,373,malo,cali,True
+340,22,53,418,malo,bogota,False
+242,17,108,349,regular,cartagena,False
+489,1,459,102,malo,barranquilla,True
+2000,33,395,252,bueno,bogota,True
+1696,9,41,484,malo,riohacha,False
+1268,38,403,410,malo,cartagena,True
+1072,5,288,484,malo,riohacha,False
+533,4,125,188,malo,bogota,False
+571,26,143,466,malo,cartagena,False
+62,71,362,447,malo,riohacha,True
+945,36,436,498,malo,bogota,True
+802,6,405,439,bueno,bogota,True
+828,34,130,400,bueno,cartagena,True
+1506,73,125,291,regular,barranquilla,True
+1006,70,148,373,malo,barranquilla,False
+1126,89,256,247,regular,bogota,True
+805,69,25,135,malo,cartagena,False
+1771,97,376,397,malo,cali,False
+599,12,280,429,regular,'santa marta',True
+1965,18,43,117,malo,riohacha,False
+316,18,218,460,bueno,cartagena,False
+1994,74,39,295,regular,bogota,True
+555,40,481,235,regular,cali,True
+1974,89,192,476,regular,cali,False
+1411,94,301,200,bueno,riohacha,True
+283,99,495,96,regular,medellin,True
+1125,4,203,428,malo,'santa marta',False
+978,17,200,420,malo,bogota,False
+1892,56,47,128,bueno,bogota,False
+1344,83,403,199,regular,medellin,False
+1925,93,257,140,malo,cartagena,True
+792,59,436,483,regular,'santa marta',True
+158,96,8,343,bueno,medellin,False
+1382,55,84,227,regular,cartagena,True
+1628,62,375,338,malo,medellin,True
+1701,50,75,462,malo,barranquilla,False
+70,50,25,308,regular,cartagena,False
+186,75,379,497,malo,bogota,False
+433,87,228,424,malo,bogota,True
+713,32,481,277,bueno,riohacha,True
+1888,75,332,430,malo,medellin,True
+288,2,294,444,bueno,cartagena,True
+1099,75,113,59,bueno,medellin,False
+1501,83,330,256,regular,'santa marta',True
+426,76,12,132,malo,cali,True
+651,9,209,62,regular,riohacha,False
+112,8,213,79,malo,'santa marta',True
+1162,94,30,418,regular,cali,False
+377,99,279,212,bueno,'santa marta',True
+1449,17,82,287,regular,medellin,False
+386,18,213,116,malo,'santa marta',True
+1164,36,108,92,malo,barranquilla,False
+1373,32,326,337,bueno,riohacha,True
+893,23,86,304,malo,'santa marta',False
+1767,19,407,111,malo,cali,True
+109,9,332,122,bueno,medellin,True
+1584,59,393,94,malo,riohacha,True
+428,15,482,407,regular,cartagena,True
+1498,33,112,359,malo,bogota,False
+560,13,49,266,malo,cartagena,True
+336,48,147,165,regular,cali,False
+1552,89,409,344,malo,'santa marta',True
+825,62,349,382,malo,'santa marta',True
+104,15,438,195,regular,riohacha,True
+1946,78,109,457,regular,medellin,True
+548,61,167,226,regular,cartagena,True
+598,37,487,410,regular,cali,True
+460,94,141,450,malo,barranquilla,True
+370,99,102,201,malo,cali,False
+776,66,266,237,malo,'santa marta',False
+378,60,339,68,malo,medellin,False
+1245,87,188,428,malo,medellin,False
+1936,44,262,340,malo,cartagena,True
+716,47,237,209,bueno,barranquilla,True
+232,53,165,91,regular,bogota,False
+870,88,380,411,regular,barranquilla,True
+830,95,151,119,malo,'santa marta',True
+1158,64,118,81,malo,medellin,True
+1699,61,338,248,regular,barranquilla,True
+748,92,166,337,regular,medellin,False
+1902,57,307,415,malo,medellin,False
+1438,98,405,324,malo,'santa marta',True
+1883,2,8,306,malo,barranquilla,False
+1675,52,457,302,malo,'santa marta',True
+1252,15,4,231,regular,barranquilla,False
+913,19,474,314,regular,riohacha,True
+933,27,117,140,regular,cali,False
+1797,31,426,141,regular,medellin,True
+799,1,117,171,malo,bogota,True
+1769,40,91,98,malo,barranquilla,False
+622,78,425,312,malo,cartagena,False
+3,15,414,95,malo,cali,True
+397,23,417,438,regular,barranquilla,True
+905,96,471,204,bueno,bogota,True
+360,35,77,372,malo,cartagena,False
+1473,46,289,172,regular,'santa marta',True
+302,24,341,285,regular,'santa marta',True
+451,60,124,431,malo,cartagena,False
+1447,38,314,425,regular,riohacha,False
+1632,10,109,379,regular,medellin,False
+1207,38,12,377,bueno,barranquilla,True
+940,63,82,398,regular,medellin,False
+1018,94,499,213,malo,riohacha,True
+605,30,102,80,malo,barranquilla,False
+48,73,7,427,bueno,bogota,False
+1573,48,268,263,malo,barranquilla,True
+1466,10,178,105,malo,cali,False
+778,56,450,96,malo,cartagena,True
+140,65,262,245,bueno,cartagena,False
+275,92,482,196,bueno,medellin,True
+1366,92,295,187,bueno,cartagena,True
+1225,5,132,332,regular,'santa marta',False
+1213,46,437,321,regular,bogota,True
+1351,50,349,405,malo,riohacha,True
+860,82,400,322,malo,'santa marta',False
+646,87,130,93,malo,cartagena,False
+1169,27,111,338,regular,cartagena,False
+1146,78,407,112,malo,'santa marta',False
+962,14,48,450,regular,barranquilla,False
+1828,94,142,492,malo,riohacha,False
+549,51,202,247,regular,cartagena,False
+1782,27,84,363,regular,bogota,False
+36,15,370,210,regular,cali,False
+1788,58,154,363,malo,bogota,True
+688,39,104,230,regular,cali,False
+1134,32,269,467,bueno,'santa marta',True
+1071,10,400,460,regular,cartagena,True
+1064,37,488,363,malo,medellin,True
+804,81,452,111,malo,riohacha,True
+464,40,334,318,regular,barranquilla,True
+916,82,213,296,regular,barranquilla,True
+1249,54,273,338,regular,bogota,False
+442,58,379,62,malo,cartagena,False
+967,23,314,270,regular,cartagena,True
+516,48,47,323,regular,medellin,False
+983,17,343,352,malo,cali,True
+1532,17,214,202,malo,medellin,False
+1597,90,263,463,malo,riohacha,True
+1820,71,465,103,regular,'santa marta',True
+429,92,304,65,regular,bogota,True
+859,98,80,403,bueno,bogota,True
+845,17,56,138,malo,barranquilla,False
+891,43,455,205,bueno,medellin,True
+330,20,328,440,regular,barranquilla,True
+1267,75,82,251,regular,medellin,False
+1394,29,391,122,regular,cartagena,True
+1715,11,289,195,malo,riohacha,True
+1188,8,473,62,regular,barranquilla,True
+164,15,428,165,malo,barranquilla,True
+1700,35,314,255,malo,bogota,False
+665,29,287,66,bueno,cali,True
+931,90,256,162,malo,bogota,True
+254,70,1,188,malo,riohacha,False
+162,94,87,467,malo,riohacha,True
+524,34,220,313,regular,cartagena,False
+374,46,82,106,malo,'santa marta',False
+970,99,277,305,malo,cali,False
+961,26,60,242,malo,medellin,True
+89,72,402,350,malo,bogota,False
+667,38,311,231,bueno,medellin,True
+1722,25,424,71,bueno,'santa marta',True
+216,39,276,158,bueno,cartagena,True
+1407,20,205,217,regular,barranquilla,False
+1832,68,489,253,regular,cartagena,True
+1529,59,68,361,regular,'santa marta',False
+50,18,84,192,malo,'santa marta',False
+365,92,98,175,regular,cali,False
+1443,18,384,223,regular,bogota,True
+322,61,145,486,malo,'santa marta',True
+540,91,347,211,regular,riohacha,True
+1523,51,32,118,bueno,medellin,False
+798,99,141,110,regular,barranquilla,False
+190,97,163,311,regular,medellin,False
+818,78,20,477,malo,cali,False
+1590,60,210,183,malo,cartagena,True
+1800,78,284,269,bueno,barranquilla,True
+1876,13,324,389,bueno,medellin,False
+1773,59,38,173,malo,cartagena,False
+1691,5,417,142,bueno,cartagena,True
+640,58,300,362,regular,riohacha,True
+1840,22,264,51,malo,bogota,False
+1906,58,179,462,bueno,bogota,True
+896,95,386,219,malo,cali,True
+939,94,252,165,bueno,'santa marta',False
+277,89,306,140,malo,barranquilla,False
+1678,72,226,78,malo,medellin,False
+43,64,84,473,regular,barranquilla,False
+627,69,316,375,malo,cali,True
+1535,55,232,368,malo,cali,True
+1766,88,219,435,regular,cartagena,False
+656,46,116,386,regular,medellin,False
+1846,82,425,195,malo,barranquilla,True
+145,1,186,96,regular,cartagena,True
+1091,94,278,251,regular,barranquilla,False
+1751,40,142,369,malo,riohacha,False
+15,53,122,289,regular,barranquilla,False
+448,70,336,441,regular,barranquilla,False
+619,9,353,442,malo,'santa marta',False
+1468,17,196,390,malo,barranquilla,True
+131,23,420,429,regular,riohacha,True
+1963,72,190,388,malo,'santa marta',True
+95,80,361,272,malo,cali,True
+430,98,293,115,malo,barranquilla,False
+1496,69,2,110,regular,bogota,False
+897,75,62,301,regular,'santa marta',False
+75,4,55,142,malo,bogota,False
+610,86,494,215,regular,barranquilla,True
+1690,5,190,370,malo,riohacha,False
+300,3,8,353,bueno,medellin,False
+38,62,264,469,regular,cali,True
+1302,63,476,203,regular,bogota,True
+566,87,149,262,bueno,cartagena,True
+1557,26,44,366,malo,'santa marta',False
+903,25,149,327,malo,bogota,False
+1453,87,218,122,malo,barranquilla,False
+754,50,490,139,regular,riohacha,True
+1572,9,267,432,regular,barranquilla,True
+1151,70,171,158,regular,riohacha,True
+1284,70,117,474,regular,medellin,True
+223,2,374,446,regular,barranquilla,True
+424,16,154,94,malo,cartagena,False
+1433,22,148,353,regular,cartagena,True
+409,42,462,314,regular,cartagena,True
+351,97,63,480,regular,medellin,False
+1687,41,156,122,bueno,cali,True
+1067,3,269,239,malo,bogota,True
+934,73,282,395,regular,cartagena,False
+1034,4,220,230,malo,cali,False
+506,92,84,176,malo,cartagena,False
+920,22,173,209,malo,barranquilla,False
+595,23,425,305,regular,barranquilla,True
+161,4,478,441,regular,medellin,True
+1460,91,341,333,malo,'santa marta',False
+1461,40,384,402,regular,barranquilla,True
+477,90,144,495,bueno,cali,True
+335,33,1,377,malo,cali,False
+756,92,462,411,malo,barranquilla,True
+660,9,442,212,regular,cartagena,True
+1023,3,261,339,regular,cartagena,False
+1193,76,231,253,regular,riohacha,True
+645,35,326,102,regular,cali,False
+169,32,293,437,regular,medellin,False
+1396,82,439,459,bueno,bogota,True
+1694,87,180,474,regular,riohacha,False
+844,57,415,406,regular,'santa marta',True
+1261,26,388,297,regular,'santa marta',True
+296,99,434,66,regular,cali,True
+17,88,143,350,malo,bogota,True
+363,17,459,347,malo,medellin,True
+255,80,119,484,regular,'santa marta',False
+1533,74,143,326,malo,cali,False
+1602,4,283,475,bueno,cartagena,True
+203,51,10,84,regular,bogota,False
+1437,29,199,176,regular,'santa marta',True
+732,1,466,254,regular,riohacha,True
+1733,98,247,98,malo,'santa marta',True
+766,92,163,117,malo,cartagena,True
+243,38,251,188,malo,barranquilla,True
+209,96,93,418,malo,'santa marta',False
+885,69,483,93,malo,medellin,True
+1577,93,476,136,malo,bogota,True
+1757,67,355,109,malo,'santa marta',True
+1085,9,488,198,regular,'santa marta',True
+1808,46,124,326,malo,riohacha,False
+1141,97,283,389,regular,cali,False
+760,63,7,443,regular,cali,False
+290,48,151,233,malo,'santa marta',False
+837,50,266,233,malo,cali,True
+1515,61,59,397,malo,barranquilla,False
+226,87,121,391,malo,cali,False
+1615,34,107,96,regular,cartagena,False
+554,33,458,450,bueno,cartagena,True
+1499,36,57,137,regular,bogota,False
+1917,15,342,87,regular,cali,False
+1560,10,227,158,malo,'santa marta',True
+868,38,101,57,regular,'santa marta',False
+1680,93,131,465,malo,barranquilla,False
+187,92,345,283,malo,cali,True
+1982,41,344,159,malo,cali,True
+118,35,293,205,regular,cali,True
+183,84,231,204,malo,riohacha,False
+1971,32,341,499,regular,cali,True
+1112,72,18,370,malo,bogota,False
+182,44,130,203,malo,medellin,False
+337,76,287,478,malo,cali,False
+984,13,344,376,malo,cali,False
+1576,87,408,214,malo,medellin,True
+1948,17,355,482,malo,medellin,True
+281,94,223,359,malo,riohacha,True
+1905,1,157,304,malo,cartagena,False
+683,39,30,224,bueno,barranquilla,True
+1139,63,463,119,malo,medellin,True
+950,79,42,414,bueno,bogota,False
+1912,64,260,313,malo,medellin,False
+1129,18,235,427,regular,riohacha,True
+443,58,427,233,malo,riohacha,True
+1087,15,334,321,regular,medellin,False
+389,54,76,74,regular,riohacha,False
+635,16,264,70,regular,'santa marta',False
+11,88,166,494,malo,medellin,False
+942,61,227,140,bueno,barranquilla,True
+1161,33,413,451,malo,bogota,True
+502,86,445,339,bueno,riohacha,True
+1276,43,211,371,malo,cartagena,True
+490,16,263,457,regular,barranquilla,True
+1060,90,149,288,malo,bogota,False
+314,25,311,456,malo,'santa marta',False
+1343,74,245,364,malo,barranquilla,True
+1983,17,37,232,regular,bogota,False
+30,91,262,224,bueno,'santa marta',True
+1536,47,213,427,regular,riohacha,True
+1574,72,74,334,malo,riohacha,False
+165,43,14,489,bueno,medellin,True
+582,21,254,260,malo,bogota,False
+617,19,73,286,malo,cartagena,False
+899,8,405,371,malo,medellin,False
+1578,82,297,190,regular,cali,False
+441,22,364,499,malo,cartagena,True
+714,45,151,160,malo,cali,False
+1716,56,212,484,regular,bogota,False
+711,44,142,422,bueno,cartagena,False
+958,78,425,154,malo,barranquilla,True
+1311,51,198,487,bueno,'santa marta',True
+123,28,20,72,malo,medellin,False
+621,28,70,313,malo,'santa marta',False
+148,14,268,206,bueno,'santa marta',True
+1210,23,14,489,regular,cartagena,False
+1626,62,395,186,malo,medellin,True
+1163,27,295,388,bueno,bogota,True
+1254,47,14,128,bueno,barranquilla,True
+1363,67,260,213,regular,riohacha,True
+675,45,12,237,regular,medellin,False
+273,1,299,213,regular,bogota,False
+192,27,261,174,regular,bogota,True
+1135,51,466,300,malo,medellin,True
+1926,53,72,110,malo,barranquilla,False
+230,19,485,484,malo,bogota,True
+1057,12,255,381,malo,cali,False
+990,18,449,328,malo,cartagena,True
+1107,64,39,172,bueno,barranquilla,False
+1388,33,408,461,malo,riohacha,True
+1677,59,216,256,malo,medellin,False
+250,16,293,174,regular,barranquilla,True
+1159,15,19,401,regular,riohacha,True
+613,19,229,149,regular,medellin,False
+150,9,237,493,regular,bogota,True
+1968,82,353,432,regular,riohacha,True
+447,42,107,344,bueno,bogota,False
+1643,30,247,142,regular,bogota,True
+1428,9,399,210,regular,'santa marta',True
+64,8,459,100,malo,cali,True
+712,45,292,184,regular,cali,True
+1074,10,380,234,malo,'santa marta',True
+200,62,303,219,regular,cali,True
+1944,25,441,215,regular,medellin,True
+500,16,241,168,malo,barranquilla,True
+1667,46,60,358,regular,cali,True
+691,13,468,224,malo,bogota,True
+349,21,192,374,bueno,riohacha,True
+385,67,89,184,regular,barranquilla,False
+1891,81,174,212,regular,'santa marta',True
+98,24,412,457,malo,cali,True
+1024,31,261,490,malo,medellin,False
+455,60,203,270,regular,cartagena,False
+1124,62,224,472,bueno,medellin,True
+564,2,161,224,bueno,medellin,True
+1819,30,424,316,bueno,riohacha,True
+1444,85,142,436,malo,'santa marta',False
+312,89,290,495,malo,cali,False
+1346,97,35,97,malo,cali,False
+117,8,404,244,malo,barranquilla,True
+1327,78,325,122,malo,bogota,False
+14,22,174,494,bueno,'santa marta',True
+556,74,439,267,regular,cali,True
+1624,46,137,121,malo,riohacha,False
+911,61,13,59,bueno,medellin,False
+341,30,304,274,regular,medellin,False
+994,40,333,291,regular,cali,True
+637,39,200,284,regular,cali,False
+996,42,87,158,regular,'santa marta',False
+1014,94,436,332,malo,riohacha,True
+986,25,467,89,regular,bogota,True
+956,28,120,252,regular,cartagena,False
+1259,52,186,177,bueno,barranquilla,True
+1368,34,419,122,malo,barranquilla,False
+303,54,129,357,malo,riohacha,False
+606,17,42,435,regular,barranquilla,False
+1886,84,431,71,regular,'santa marta',True
+544,50,152,448,regular,bogota,False
+492,64,108,71,regular,cartagena,True
+725,57,331,153,malo,cartagena,True
+116,81,24,337,malo,'santa marta',False
+135,99,228,339,regular,medellin,True
+384,33,455,79,regular,cartagena,True
+569,8,432,62,malo,riohacha,True
+904,67,138,150,malo,cartagena,True
+1940,3,467,463,regular,bogota,True
+395,47,93,281,malo,cali,False
+551,12,146,105,malo,cali,False
+55,9,22,334,malo,bogota,False
+1646,62,325,254,regular,riohacha,True
+963,59,29,327,malo,riohacha,False
+1471,92,327,107,malo,medellin,False
+258,20,485,301,malo,cartagena,True
+866,98,40,467,malo,medellin,False
+1747,28,313,388,malo,'santa marta',True
+1399,47,120,397,regular,bogota,True
+918,42,338,83,regular,barranquilla,True
+1033,75,368,303,malo,'santa marta',True
+425,14,153,110,bueno,bogota,False
+1989,54,307,100,regular,cartagena,True
+960,2,130,427,malo,medellin,False
+356,61,176,71,malo,cali,True
+536,80,152,156,malo,cartagena,True
+807,5,68,259,regular,medellin,False
+326,33,232,484,regular,riohacha,True
+1078,40,271,423,malo,cali,False
+974,28,290,198,regular,cali,True
+229,1,175,392,regular,barranquilla,False
+1668,88,428,242,malo,bogota,True
+318,66,458,241,regular,'santa marta',True
+1510,73,344,87,regular,riohacha,True
+1017,62,391,238,bueno,'santa marta',True
+184,30,326,479,regular,cartagena,True
+1945,94,93,464,bueno,barranquilla,False
+1194,45,219,129,bueno,riohacha,True
+1066,77,374,79,malo,'santa marta',False
+915,5,493,297,bueno,cartagena,True
+812,37,128,272,regular,riohacha,False
+1404,67,479,219,regular,cali,True
+280,31,39,316,regular,medellin,True
+1421,30,196,339,regular,medellin,True
+659,42,300,187,bueno,cartagena,True
+1413,98,184,485,bueno,bogota,True
+198,27,301,174,regular,barranquilla,False
+78,63,173,449,bueno,cartagena,False
+839,65,130,236,malo,barranquilla,True
+1768,80,443,305,malo,barranquilla,False
+60,92,297,380,regular,barranquilla,False
+1086,75,315,290,regular,bogota,True
+251,97,20,446,regular,'santa marta',False
+1927,8,87,414,regular,bogota,False
+1942,46,362,340,bueno,riohacha,True
+535,24,72,114,malo,medellin,False
+484,1,77,419,bueno,medellin,False
+1842,10,361,445,regular,barranquilla,True
+1990,86,59,198,bueno,cartagena,True
+1860,33,64,205,bueno,riohacha,True
+1230,9,394,54,bueno,bogota,True
+1548,70,26,159,malo,cali,False
+1406,12,217,261,regular,'santa marta',False
+1320,93,78,339,regular,riohacha,True
+1778,89,35,469,regular,barranquilla,False
+929,49,405,212,malo,bogota,True
+1420,74,21,481,regular,barranquilla,False
+1325,18,90,332,malo,'santa marta',False
+1231,51,24,106,malo,cali,False
+1951,38,291,232,regular,medellin,True
+1127,42,86,50,regular,barranquilla,True
+308,36,5,277,bueno,riohacha,True
+1831,22,227,271,malo,riohacha,True
+1397,2,220,452,malo,cartagena,True
+1707,32,273,320,regular,'santa marta',False
+1349,92,499,297,bueno,riohacha,True
+739,12,342,153,malo,cali,True
+886,34,7,186,malo,bogota,False
+1814,64,120,475,malo,cali,False
+228,97,421,428,regular,'santa marta',True
+1204,20,90,71,malo,cartagena,False
+1442,70,376,126,bueno,medellin,True
+1592,98,316,67,regular,cali,True
+883,84,62,142,malo,bogota,False
+854,38,156,157,regular,medellin,False
+1569,14,403,125,bueno,'santa marta',True
+1032,92,480,400,regular,medellin,True
+562,95,108,488,regular,'santa marta',False
+515,90,362,203,bueno,cali,True
+1179,38,449,439,regular,medellin,True
+900,4,246,104,bueno,cali,False
+1322,16,75,372,malo,medellin,False
+775,25,256,487,regular,cali,True
+52,89,388,472,bueno,bogota,True
+440,62,498,371,malo,cali,True
+344,54,90,196,regular,bogota,True
+545,35,19,356,bueno,medellin,False
+1016,62,211,496,regular,'santa marta',False
+1082,63,183,71,malo,cali,True
+1251,40,71,133,malo,medellin,False
+717,21,66,380,malo,cali,False
+1671,77,450,66,malo,cartagena,True
+1805,66,63,449,bueno,medellin,True
+478,62,106,123,malo,medellin,False
+743,72,490,361,regular,cartagena,True
+1354,8,468,74,regular,medellin,True
+1160,29,23,177,regular,'santa marta',False
+693,58,248,282,bueno,cartagena,True
+1869,98,357,123,malo,bogota,False
+851,66,99,203,regular,medellin,False
+1280,24,76,461,bueno,bogota,True
+1791,42,150,260,regular,bogota,True
+101,60,35,326,regular,cali,False
+465,52,381,70,regular,medellin,True
+83,74,183,474,malo,cartagena,False
+435,86,43,283,bueno,cartagena,False
+1720,9,66,273,malo,medellin,False
+1156,72,3,320,malo,barranquilla,False
+952,56,113,165,regular,cartagena,False
+594,24,167,195,regular,riohacha,True
+1448,34,21,140,malo,cartagena,False
+601,13,302,259,malo,barranquilla,False
+1155,51,184,386,regular,'santa marta',False
+372,24,454,233,regular,medellin,True
+1633,30,375,473,regular,medellin,True
+1324,19,137,256,malo,bogota,False
+462,99,275,207,regular,medellin,False
+1157,42,191,149,regular,cartagena,True
+609,89,109,378,regular,cartagena,False
+1919,27,194,76,bueno,cali,True
+1297,84,146,173,regular,cali,False
+592,82,374,404,regular,cartagena,False
+616,61,387,222,regular,cali,True
+1665,56,134,354,regular,cartagena,True
+66,35,12,250,bueno,medellin,False
+583,36,409,189,bueno,'santa marta',True
+671,86,158,220,bueno,'santa marta',False
+1754,62,401,488,malo,'santa marta',True
+1298,49,319,329,malo,'santa marta',True
+272,82,251,150,bueno,riohacha,True
+1709,13,108,188,malo,cartagena,False
+298,48,380,196,malo,riohacha,True
+1475,2,152,279,malo,cartagena,False
+1068,33,181,406,malo,medellin,True
+964,56,97,403,malo,medellin,False
+959,88,129,438,bueno,medellin,False
+821,51,316,210,regular,bogota,True
+1834,96,334,349,malo,medellin,False
+1192,68,302,196,malo,barranquilla,False
+557,43,242,462,malo,cali,False
+405,43,267,243,malo,bogota,True
+432,32,300,194,bueno,medellin,True
+1063,38,347,392,malo,'santa marta',False
+542,24,68,149,malo,riohacha,False
+1579,95,164,209,bueno,cartagena,True
+1316,30,475,416,bueno,cali,True
+147,90,125,324,regular,cali,False
+1291,26,228,315,regular,riohacha,True
+909,32,389,190,regular,barranquilla,True
+1115,60,149,100,malo,cali,False
+1174,66,72,437,bueno,'santa marta',False
+1777,45,190,458,bueno,medellin,True
+205,24,118,183,regular,cali,False
+253,59,285,403,malo,cali,False
+1405,87,106,483,regular,barranquilla,False
+494,69,39,240,regular,cali,False
+1908,15,311,126,malo,cartagena,True
+1197,95,425,138,malo,medellin,True
+1013,4,139,329,regular,cartagena,False
+553,65,164,470,malo,medellin,False
+1648,25,131,482,malo,riohacha,False
+496,93,159,254,bueno,'santa marta',True
+328,21,76,288,bueno,medellin,False
+475,55,291,72,regular,cartagena,True
+245,69,404,373,regular,medellin,False
+898,16,219,409,malo,riohacha,False
+195,3,460,79,regular,'santa marta',True
+1658,12,189,120,malo,cartagena,False
+97,53,131,328,malo,barranquilla,False
+777,10,25,106,bueno,'santa marta',True
+1913,25,406,380,malo,medellin,True
+1568,7,427,136,regular,riohacha,True
+755,28,158,248,regular,medellin,False
+1260,57,55,359,bueno,barranquilla,False
+1195,2,411,428,bueno,bogota,True
+1039,62,360,237,regular,riohacha,True
+1030,66,38,414,malo,cali,False
+1362,54,90,186,regular,barranquilla,True
+342,38,69,401,malo,cartagena,False
+1847,50,120,367,malo,barranquilla,True
+398,66,305,237,malo,medellin,True
+520,94,406,258,malo,'santa marta',False
+353,64,161,336,malo,riohacha,False
+1029,6,138,328,bueno,barranquilla,False
+949,52,21,203,bueno,cali,False
+954,14,192,315,malo,medellin,False
+1371,88,313,155,regular,barranquilla,False
+1430,66,160,65,regular,bogota,False
+152,15,40,468,malo,barranquilla,False
+176,45,381,393,regular,bogota,True
+1353,93,421,463,malo,cali,True
+581,89,441,389,malo,riohacha,False
+850,14,393,423,malo,riohacha,True
+1051,26,105,261,malo,'santa marta',False
+600,55,188,62,regular,medellin,True
+487,48,345,461,bueno,barranquilla,True
+265,20,206,324,regular,cartagena,False
+1490,99,198,234,regular,'santa marta',False
+1180,13,388,426,malo,barranquilla,True
+780,5,253,223,bueno,cartagena,True
+1521,3,49,132,bueno,cali,False
+912,51,213,277,bueno,cali,True
+1639,49,412,190,bueno,riohacha,True
+488,89,350,415,regular,barranquilla,False
+173,28,41,374,malo,cartagena,False
+5,61,77,50,malo,'santa marta',False
+1763,77,225,396,regular,bogota,False
+1075,44,226,431,regular,cali,True
+1575,59,8,288,regular,'santa marta',False
+1477,65,61,469,regular,cali,True
+1092,95,414,81,regular,cartagena,True
+1464,53,425,186,bueno,bogota,True
+751,8,291,282,regular,cartagena,True
+1634,25,21,224,bueno,barranquilla,True
+1850,47,183,433,regular,riohacha,False
+130,48,105,149,regular,medellin,False
+668,83,208,421,bueno,'santa marta',False
+841,5,267,495,malo,bogota,False
+1898,59,93,225,malo,riohacha,False
+420,45,454,447,malo,'santa marta',True
+1130,40,345,216,bueno,cali,True
+969,38,232,246,regular,cartagena,True
+648,75,172,102,regular,'santa marta',False
+1609,16,129,283,bueno,bogota,False
+304,33,264,401,malo,medellin,False
+1007,33,277,427,bueno,barranquilla,True
+218,3,171,327,bueno,cali,False
+380,63,331,313,regular,cartagena,True
+320,35,114,291,regular,barranquilla,False
+514,90,173,398,regular,'santa marta',False
+573,90,476,413,bueno,riohacha,True
+1283,52,486,131,bueno,barranquilla,True
+657,13,264,405,bueno,'santa marta',True
+1955,86,312,491,regular,'santa marta',True
+1212,90,418,163,malo,riohacha,True
+917,92,181,204,malo,bogota,False
+1241,21,202,417,malo,barranquilla,False
+268,52,276,57,malo,barranquilla,False
+579,29,78,250,regular,cali,False
+1395,60,163,460,regular,cartagena,True
+1069,6,160,74,regular,riohacha,False
+208,32,458,250,regular,riohacha,True
+159,52,100,113,regular,riohacha,False
+310,84,86,124,bueno,cali,False
+543,12,50,387,malo,barranquilla,False
+669,8,106,73,malo,riohacha,False
+877,4,231,130,regular,bogota,False
+151,79,18,451,malo,cartagena,False
+1328,47,61,401,bueno,barranquilla,False
+61,60,188,315,malo,riohacha,False
+454,53,292,167,regular,riohacha,True
+1485,40,177,403,bueno,barranquilla,True
+631,52,428,359,regular,cartagena,True
+737,57,427,53,regular,medellin,True
+846,47,463,323,malo,medellin,True
+1561,16,262,84,bueno,barranquilla,True
+128,34,435,362,regular,cartagena,True
+957,87,393,90,regular,medellin,True
+534,16,170,170,malo,bogota,False
+1465,71,161,387,regular,bogota,False
+773,69,276,151,malo,'santa marta',False
+731,31,196,461,malo,medellin,False
+1554,15,254,146,regular,riohacha,True
+1120,5,238,243,malo,cartagena,True
+107,89,353,478,malo,bogota,False
+953,86,105,392,regular,riohacha,False
+1735,79,128,131,malo,barranquilla,False
+590,99,323,77,regular,medellin,True
+86,95,300,284,malo,cartagena,True
+856,98,494,334,malo,cartagena,True
+1580,94,485,95,malo,medellin,False
+872,30,221,401,bueno,cartagena,False
+366,30,381,326,malo,riohacha,False
+1136,38,258,218,malo,cartagena,False
+972,64,203,361,malo,'santa marta',True
+1895,21,147,169,regular,cartagena,True
+235,32,120,158,regular,'santa marta',False
+138,91,418,470,regular,bogota,True
+20,2,375,299,bueno,cali,True
+642,14,58,167,bueno,bogota,True
+1581,39,85,421,regular,bogota,False
+122,41,382,112,malo,medellin,True
+1172,68,186,238,regular,bogota,True
+638,53,50,276,malo,bogota,False
+985,84,173,203,regular,bogota,True
+1682,54,476,429,malo,riohacha,True
+1967,64,380,78,malo,cartagena,True
+1711,73,350,479,regular,'santa marta',True
+1784,60,281,417,malo,barranquilla,False
+352,28,73,238,regular,cartagena,False
+396,86,473,185,regular,medellin,True
+1803,12,327,491,regular,bogota,False
+1901,19,21,105,regular,bogota,True
+58,2,3,499,regular,barranquilla,False
+1493,55,330,263,regular,cartagena,False
+1802,93,173,462,regular,bogota,False
+1041,66,329,375,regular,cartagena,True
+1011,70,366,244,regular,medellin,True
+608,84,167,186,malo,barranquilla,True
+1238,23,488,82,bueno,medellin,True
+1451,25,131,228,bueno,cartagena,True
+580,36,77,70,regular,barranquilla,False
+1770,92,354,442,bueno,'santa marta',True
+1246,57,57,499,regular,cartagena,False
+1725,42,47,288,malo,medellin,False
+1187,29,491,439,malo,riohacha,True
+63,44,14,259,regular,medellin,False
+989,67,428,181,bueno,medellin,True
+175,42,316,425,regular,medellin,False
+1147,53,88,98,malo,riohacha,False
+47,21,383,381,regular,bogota,True
+362,49,489,443,regular,cali,True
+1737,72,67,382,regular,'santa marta',False
+527,10,9,374,malo,riohacha,False
+237,32,312,299,bueno,medellin,True
+471,63,27,263,regular,barranquilla,False
+1070,50,351,161,malo,medellin,True
+1481,26,43,86,regular,riohacha,False
+449,15,303,264,malo,riohacha,True
+910,50,65,222,malo,barranquilla,False
+1954,63,340,284,regular,riohacha,False
+971,15,284,188,bueno,cartagena,True
+1113,11,149,240,malo,barranquilla,True
+849,85,83,407,bueno,barranquilla,True
+1957,88,141,52,bueno,barranquilla,False
+119,35,4,221,bueno,riohacha,True
+1339,55,198,203,bueno,medellin,True
+705,25,288,362,regular,cartagena,True
+1331,94,259,282,regular,barranquilla,True
+215,12,133,450,malo,riohacha,False
+1181,31,104,482,malo,bogota,False
+457,68,271,102,regular,riohacha,False
+1873,4,201,328,bueno,bogota,False
+1140,15,436,311,bueno,cartagena,True
+450,54,117,169,bueno,cali,False
+587,64,263,150,malo,'santa marta',False
+630,25,5,77,malo,cali,False
+24,33,459,223,malo,riohacha,True
+1551,82,66,363,malo,'santa marta',False
+418,57,304,121,regular,cali,False
+392,46,405,448,regular,cali,True
+639,42,67,62,malo,medellin,False
+1440,37,154,492,malo,bogota,False
+1986,32,17,240,bueno,riohacha,False
+602,23,19,278,regular,riohacha,True
+1111,93,431,290,regular,cartagena,True
+293,37,301,95,malo,'santa marta',True
+1996,32,192,219,malo,cali,False
+1222,43,211,102,malo,medellin,True
+677,36,400,279,bueno,cartagena,True
+741,96,101,168,malo,riohacha,False
+681,61,3,205,regular,'santa marta',False
+867,52,273,296,malo,bogota,True
+1037,94,136,362,bueno,cali,True
+774,47,466,265,bueno,cartagena,True
+1232,29,227,461,regular,bogota,False
+1534,57,376,110,malo,barranquilla,False
+758,64,67,75,malo,bogota,False
+1931,50,153,192,malo,medellin,True
+94,85,312,176,regular,'santa marta',True
+1741,18,303,497,regular,cartagena,True
+611,13,36,359,malo,medellin,False
+9,75,103,381,regular,cali,False
+1303,61,251,476,regular,cartagena,True
+1594,37,454,199,malo,medellin,True
+1779,53,147,185,regular,bogota,False
+1669,11,377,290,malo,'santa marta',True
+620,71,379,265,bueno,bogota,True
+1305,71,459,344,bueno,'santa marta',True
+1503,81,144,360,malo,'santa marta',True
+269,33,181,333,malo,cartagena,False
+1889,27,438,454,malo,cartagena,True
+92,62,37,111,malo,medellin,False
+1488,59,454,188,regular,bogota,True
+1408,5,70,88,regular,cali,False
+403,33,102,213,regular,'santa marta',False
+132,62,250,466,regular,cartagena,False
+772,82,206,101,regular,cali,True
+936,47,34,66,malo,cali,False
+1999,97,147,63,malo,medellin,False
+287,60,428,295,malo,'santa marta',True
+439,63,302,237,malo,riohacha,False
+1445,42,313,407,malo,cartagena,False
+4,72,417,94,bueno,barranquilla,True
+1128,89,150,456,bueno,'santa marta',False
+1623,39,32,201,malo,medellin,False
+154,42,399,175,malo,'santa marta',True
+438,58,326,407,malo,cartagena,False
+604,99,218,149,malo,cali,False
+29,49,9,226,regular,'santa marta',False
+1903,69,38,236,bueno,bogota,False
+459,96,277,370,bueno,barranquilla,True
+1094,69,213,211,regular,medellin,False
+364,44,324,369,bueno,bogota,True
+922,70,164,142,malo,'santa marta',True
+753,60,216,108,malo,'santa marta',False
+928,34,191,143,malo,medellin,False
+1287,49,192,226,malo,riohacha,True
+141,99,295,470,bueno,riohacha,True
+1088,24,124,108,malo,cartagena,False
+1317,29,399,371,malo,bogota,True
+13,3,90,317,regular,medellin,False
+673,71,55,277,regular,riohacha,False
+814,74,92,52,malo,cali,False
+796,33,390,64,malo,cartagena,True
+357,48,269,398,regular,bogota,False
+787,85,110,357,bueno,riohacha,True
+46,7,251,274,regular,barranquilla,True
+682,54,144,321,malo,bogota,True
+734,3,262,173,regular,cali,True
+793,27,387,471,bueno,'santa marta',True
+1336,1,254,462,malo,barranquilla,True
+570,93,293,150,malo,'santa marta',True
+185,62,145,412,malo,riohacha,False
+1273,34,305,206,regular,cali,True
+1559,32,42,55,regular,cali,False
+1563,17,436,199,regular,'santa marta',True
+240,75,207,432,malo,cali,False
+1786,5,344,367,malo,riohacha,True
+172,86,493,483,malo,riohacha,True
+575,7,160,322,malo,barranquilla,False
+887,6,155,470,malo,cartagena,False
+126,72,50,97,bueno,cali,True
+699,1,84,202,regular,'santa marta',False
+992,34,101,133,bueno,riohacha,True
+1100,9,376,263,malo,'santa marta',True
+1721,67,483,185,bueno,barranquilla,True
+334,17,289,378,malo,medellin,False
+67,78,87,426,malo,medellin,False
+636,57,230,301,malo,barranquilla,True
+740,74,316,442,regular,riohacha,True
+1058,47,370,87,malo,riohacha,True
+1780,42,30,250,malo,bogota,False
+499,26,312,61,malo,barranquilla,True
+1748,69,117,52,malo,barranquilla,True
+1073,23,288,255,regular,'santa marta',False
+1916,18,67,305,malo,riohacha,False
+256,93,35,322,regular,cali,False
+371,37,19,84,bueno,'santa marta',False
+1907,38,132,153,malo,barranquilla,False
+1872,29,417,437,bueno,barranquilla,True
+736,87,406,267,malo,bogota,False
+406,48,355,240,regular,'santa marta',False
+1885,78,343,112,regular,riohacha,False
+1295,71,183,257,malo,barranquilla,False
+1556,26,456,262,bueno,cartagena,True
+1277,59,406,55,regular,'santa marta',True
+1879,29,482,253,regular,medellin,True
+196,70,440,475,regular,bogota,True
+1409,37,44,418,regular,bogota,False
+1308,13,301,279,malo,riohacha,False
+1255,73,3,264,regular,cartagena,False
+1855,52,432,215,regular,cali,True
+584,10,258,342,malo,bogota,False
+171,59,422,414,bueno,cartagena,True
+333,67,452,97,bueno,'santa marta',True
+988,10,416,454,regular,'santa marta',False
+879,56,63,133,bueno,riohacha,False
+1478,51,354,163,malo,riohacha,True
+589,49,146,408,malo,'santa marta',False
+1924,17,361,336,malo,cartagena,False
+127,12,177,209,malo,'santa marta',True
+720,75,258,266,malo,bogota,True
+1235,41,230,167,malo,barranquilla,False
+480,9,158,103,regular,'santa marta',False
+1313,83,148,157,regular,cartagena,False
+331,8,345,414,regular,'santa marta',False
+1743,37,143,172,regular,'santa marta',False
+1383,48,152,468,regular,barranquilla,True
+538,92,49,186,malo,barranquilla,True
+1237,11,310,108,regular,bogota,False
+410,26,330,339,bueno,medellin,True
+263,67,497,201,regular,medellin,True
+1513,1,294,182,regular,riohacha,False
+1511,40,495,390,malo,cali,True
+1871,98,172,256,malo,riohacha,False
+72,2,243,204,regular,cali,True
+1266,90,158,368,regular,medellin,True
+811,53,288,446,bueno,medellin,True
+539,32,154,460,malo,medellin,False
+966,3,242,474,regular,barranquilla,True
+1369,35,129,286,bueno,cartagena,False
+1914,24,76,231,malo,barranquilla,False
+1884,47,301,214,bueno,bogota,True
+1640,3,102,295,regular,riohacha,False
+1657,68,227,66,bueno,cali,True
+1422,59,178,345,malo,bogota,False
+935,26,196,255,bueno,riohacha,False
+790,89,238,103,malo,cartagena,False
+1374,46,297,311,bueno,'santa marta',False
+1131,72,22,175,malo,riohacha,False
+1611,66,101,60,malo,riohacha,False
+56,90,410,154,regular,barranquilla,True
+1829,37,203,435,malo,cali,True
+325,68,303,141,malo,riohacha,False
+862,79,97,348,malo,bogota,False
+1081,65,402,65,malo,'santa marta',True
+1350,32,69,327,regular,riohacha,False
+133,88,117,457,regular,'santa marta',False
+220,81,1,118,regular,bogota,False
+453,8,281,76,regular,medellin,True
+1937,53,218,236,regular,cali,False
+644,5,342,187,regular,riohacha,True
+726,18,323,244,malo,bogota,False
+1004,56,17,95,regular,cali,False
+1314,62,240,452,malo,barranquilla,False
+350,30,454,62,regular,medellin,True
+847,23,457,68,bueno,cali,True
+1508,66,86,434,regular,riohacha,False
+747,8,42,192,regular,barranquilla,False
+416,60,282,124,regular,barranquilla,True
+1001,64,408,196,malo,riohacha,True
+512,76,172,490,malo,cali,True
+1864,51,255,318,malo,riohacha,False
+513,16,376,290,bueno,riohacha,True
+1765,6,251,284,regular,barranquilla,False
+689,67,118,219,bueno,barranquilla,False
+1487,36,98,199,bueno,cali,False
+100,89,243,333,regular,cartagena,True
+469,19,52,362,bueno,'santa marta',False
+1960,64,49,390,malo,barranquilla,False
+568,90,150,284,malo,cali,False
+1360,59,356,56,regular,'santa marta',True
+1935,64,268,418,malo,bogota,True
+1196,27,66,92,regular,medellin,False
+177,62,111,492,regular,'santa marta',False
+1934,93,61,318,malo,barranquilla,False
+137,86,335,205,regular,'santa marta',False
+1758,56,252,421,regular,riohacha,False
+1243,36,430,263,regular,riohacha,True
+1462,98,396,231,malo,riohacha,True
+1403,2,182,90,regular,cartagena,False
+647,93,215,352,malo,medellin,True
+1178,97,3,388,malo,'santa marta',False
+143,78,243,370,regular,bogota,True
+517,85,379,145,malo,cartagena,True
+1031,84,111,118,malo,riohacha,True
+1950,9,142,465,regular,'santa marta',False
+1745,48,21,270,bueno,riohacha,False
+219,56,460,117,regular,riohacha,True
+257,3,198,148,regular,bogota,False
+444,86,493,160,regular,riohacha,True
+1587,31,432,153,regular,riohacha,False
+826,65,43,99,regular,bogota,False
+607,62,288,65,regular,medellin,True
+1827,79,89,286,malo,barranquilla,False
+417,7,328,404,regular,bogota,True
+323,41,26,268,malo,medellin,False
+1731,11,1,165,regular,'santa marta',False
+121,5,364,90,malo,cali,True
+1292,28,350,147,malo,'santa marta',False
+1215,90,20,228,bueno,bogota,True
+1242,90,38,68,malo,bogota,False
+1217,62,400,377,bueno,barranquilla,True
+752,58,158,66,malo,medellin,False
+943,81,233,131,regular,barranquilla,False
+1915,12,429,430,malo,'santa marta',True
+1400,69,394,322,bueno,cartagena,True
+1641,45,223,434,regular,riohacha,True
+373,93,482,335,malo,bogota,False
+485,34,132,63,regular,medellin,True
+149,27,131,251,bueno,'santa marta',False
+1026,36,352,230,regular,bogota,True
+1257,9,229,264,regular,medellin,True
+1613,99,380,216,malo,cali,False
+708,38,460,65,bueno,medellin,True
+1021,55,491,53,regular,cartagena,True
+902,56,79,140,regular,medellin,False
+1216,13,75,259,bueno,bogota,True
+19,38,106,152,regular,barranquilla,False
+1992,20,183,99,malo,'santa marta',True
+1772,59,46,208,malo,bogota,False
+1738,5,4,94,bueno,riohacha,False
+765,77,405,409,malo,'santa marta',False
+1435,26,143,387,malo,cartagena,False
+436,51,432,429,malo,bogota,True
+1495,22,5,184,bueno,'santa marta',False
+68,81,12,88,regular,barranquilla,False
+227,96,107,358,bueno,bogota,True
+105,45,447,469,malo,cali,True
+376,95,489,352,malo,cartagena,True
+742,16,244,182,bueno,riohacha,True
+550,43,345,161,regular,bogota,True
+1798,82,275,314,regular,cali,False
+315,93,119,448,regular,cartagena,False
+1486,11,17,112,malo,cartagena,False
+1380,14,57,332,regular,riohacha,False
+1379,85,188,419,malo,riohacha,False
+1104,35,32,485,regular,bogota,False
+1582,99,72,161,bueno,riohacha,False
+1849,64,255,418,bueno,medellin,True
+727,47,180,462,bueno,'santa marta',False
+1019,95,28,73,regular,barranquilla,False
+1357,67,74,418,malo,riohacha,False
+1323,40,359,183,bueno,cartagena,True
+1629,57,16,495,regular,cartagena,False
+1020,24,51,73,regular,cali,False
+1517,42,99,291,malo,medellin,False
+1790,23,215,404,regular,'santa marta',True
+1352,7,320,147,malo,cartagena,True
+1450,37,69,313,malo,cali,False
+1861,6,494,454,regular,medellin,True
+1319,45,47,358,malo,barranquilla,False
+1079,2,273,277,malo,cali,False
+358,19,73,263,malo,cartagena,False
+1881,75,480,77,malo,medellin,True
+1612,55,416,255,bueno,riohacha,True
+1148,51,44,125,regular,cartagena,False
+1361,72,70,354,malo,riohacha,False
+1375,16,182,225,regular,barranquilla,False
+997,41,43,270,regular,bogota,False
+1880,29,216,210,malo,cali,False
+1015,75,399,89,regular,cali,False
+1288,29,19,253,malo,riohacha,False
+1250,55,119,190,malo,'santa marta',False
+1823,98,320,153,regular,cali,False
+1656,88,133,331,regular,'santa marta',False
+1970,38,295,220,bueno,barranquilla,True
+1387,7,414,458,regular,bogota,True
+458,6,324,344,malo,riohacha,False
+865,63,103,499,bueno,'santa marta',True
+724,20,449,181,regular,bogota,True
+115,11,445,403,malo,cartagena,True
+658,40,150,447,malo,medellin,False
+1047,45,292,152,malo,cartagena,False
+857,38,371,108,malo,medellin,False
+927,46,395,166,bueno,cali,True
+565,35,119,72,malo,medellin,False
+768,13,347,461,regular,riohacha,True
+878,10,178,236,malo,cartagena,False
+194,77,424,294,malo,barranquilla,True
+1865,75,149,460,bueno,cartagena,False
+1446,41,165,370,malo,cali,False
+1265,25,162,387,bueno,bogota,True
+1593,3,468,143,malo,cartagena,True
+481,12,146,101,malo,bogota,False
+817,85,334,57,regular,cartagena,True
+1036,6,223,218,malo,cartagena,False
+882,17,191,391,regular,riohacha,True
+85,14,307,468,malo,barranquilla,False
+1562,71,167,88,regular,medellin,False
+160,96,240,374,regular,barranquilla,False
+526,95,26,439,regular,cartagena,False
+1432,73,203,143,malo,cali,True
+1943,15,449,135,malo,'santa marta',True
+700,3,454,82,malo,barranquilla,True
+103,29,93,156,regular,riohacha,False
+1980,51,233,457,malo,barranquilla,True
+168,13,375,80,regular,cartagena,True
+1635,84,158,498,malo,bogota,False
+980,90,79,158,regular,medellin,False
+501,51,426,464,malo,riohacha,False
+456,5,51,280,malo,cali,True
+1762,91,115,145,regular,bogota,False
+180,28,473,94,malo,barranquilla,True
+332,7,302,212,regular,riohacha,False
+757,41,134,490,malo,cali,True
+446,52,407,339,regular,riohacha,True
+628,99,130,477,malo,medellin,True
+923,1,465,376,regular,'santa marta',True
+1022,9,442,372,malo,riohacha,True
+519,33,375,343,regular,'santa marta',True
+588,99,85,353,malo,cartagena,False
+558,44,69,466,regular,barranquilla,False
+260,36,59,153,malo,'santa marta',False
+1419,81,441,348,bueno,riohacha,True
+1543,95,381,81,malo,bogota,True
+394,32,316,190,malo,bogota,True
+547,33,60,132,regular,cartagena,False
+1089,38,473,336,bueno,barranquilla,True
+476,90,136,81,regular,bogota,False
+782,65,289,331,regular,bogota,True
+1625,29,12,412,regular,medellin,False
+404,9,474,84,regular,riohacha,True
+355,69,89,163,regular,barranquilla,True
+1275,17,366,66,bueno,riohacha,True
+224,92,468,211,regular,riohacha,True
+319,54,414,298,regular,barranquilla,True
+1644,68,128,481,malo,'santa marta',False
+806,95,79,495,malo,cali,False
+618,76,136,211,malo,cali,False
+1586,14,399,296,regular,riohacha,False
+1455,85,472,156,malo,medellin,True
+762,73,14,388,bueno,cartagena,False
+1279,54,109,374,malo,'santa marta',False
+1309,94,161,69,regular,bogota,True
+1272,91,403,111,malo,cali,True
+34,60,416,499,regular,cali,True
+852,75,149,439,regular,cartagena,False
+577,58,138,330,malo,cartagena,False
+238,68,156,390,bueno,cartagena,True
+1165,29,367,421,bueno,cartagena,True
+919,61,485,178,malo,riohacha,True
+77,93,356,436,regular,medellin,True
+1875,99,393,375,regular,cartagena,True
+234,90,497,465,malo,cartagena,True
+603,89,68,446,malo,'santa marta',False
+134,37,354,216,malo,'santa marta',False
+924,5,483,290,malo,riohacha,True
+1645,18,283,288,regular,medellin,True
+744,76,12,145,bueno,barranquilla,True
+474,58,156,232,regular,cali,False
+1065,11,258,355,regular,barranquilla,False
+1564,23,279,474,malo,barranquilla,False
+125,73,152,124,regular,barranquilla,True
+1985,46,41,246,regular,cartagena,False
+1979,86,382,392,regular,medellin,True
+719,85,341,274,regular,medellin,True
+415,13,85,407,bueno,barranquilla,False
+1530,49,366,283,malo,bogota,True
+1392,19,342,142,malo,riohacha,True
+1729,25,148,384,regular,bogota,True
+276,57,217,113,regular,bogota,True
+379,97,365,419,bueno,cartagena,True
+1605,25,40,164,malo,medellin,False
+707,33,272,61,malo,riohacha,False
+1244,54,260,246,malo,cali,True
+1398,1,270,297,regular,cali,False
+482,1,2,197,malo,medellin,False
+493,63,74,79,regular,cartagena,False
+1386,74,213,176,regular,bogota,False
+650,76,102,95,bueno,barranquilla,False
+411,99,450,479,malo,cali,True
+1984,76,305,77,malo,cali,True
+1391,19,414,181,malo,medellin,True
+1431,25,248,387,regular,medellin,True
+1491,54,98,254,malo,riohacha,False
+1545,81,168,401,regular,cartagena,False
+1921,60,162,189,malo,cali,False
+1333,51,107,149,regular,cartagena,False
+74,54,147,51,bueno,medellin,True
+1269,2,159,106,bueno,cartagena,False
+178,57,14,116,regular,medellin,False
+1457,57,403,344,regular,barranquilla,True
+1282,71,314,218,regular,barranquilla,False
+1190,29,405,369,bueno,riohacha,True
+1239,1,359,367,bueno,riohacha,True
+1792,10,432,241,malo,cali,True
+41,51,348,288,malo,cali,True
+842,94,178,381,regular,bogota,True
+574,34,455,60,regular,medellin,True
+1116,30,126,341,malo,'santa marta',False
+102,41,445,487,malo,barranquilla,True
+40,62,178,196,malo,cartagena,False
+461,47,470,282,bueno,cartagena,True
+641,39,381,98,malo,barranquilla,True
+1620,32,366,448,malo,'santa marta',False
+767,29,66,400,bueno,medellin,False
+1674,71,364,300,malo,bogota,False
+10,75,194,121,bueno,bogota,False
+1050,70,78,366,bueno,medellin,False
+1826,60,308,89,malo,medellin,False
+1897,80,308,227,regular,cali,True
+1877,39,35,406,malo,riohacha,False
+941,48,232,230,bueno,bogota,True
+327,14,369,224,malo,cali,False
+1470,85,490,494,malo,'santa marta',True
+361,64,159,103,malo,cali,False
+1045,26,451,217,malo,bogota,True
+1603,93,114,171,malo,medellin,False
+129,33,96,167,regular,riohacha,True
+612,59,232,489,regular,'santa marta',False
+1896,47,26,351,bueno,riohacha,True
+1810,17,121,395,regular,cartagena,False
+73,6,122,166,malo,'santa marta',False
+210,88,266,334,regular,'santa marta',True
+1494,24,341,305,bueno,'santa marta',True
+252,73,282,160,regular,medellin,True
+1223,76,101,380,malo,cartagena,False
+788,26,336,410,bueno,'santa marta',True
+858,50,263,174,regular,medellin,False
+1335,4,350,307,malo,cartagena,True
+324,33,136,131,malo,'santa marta',False
+932,45,183,408,malo,bogota,False
+779,30,281,208,bueno,'santa marta',True
+1310,87,401,90,malo,'santa marta',True
+1456,27,305,394,malo,'santa marta',False
+1630,16,129,68,regular,bogota,False
+1512,17,424,462,malo,cali,True
+1930,46,214,400,regular,medellin,True
+1205,11,314,420,malo,barranquilla,False
+1154,7,353,114,bueno,cali,True
+106,65,207,148,malo,medellin,False
+690,45,5,236,bueno,cartagena,False
+1355,65,49,333,malo,cartagena,False
+1121,83,135,153,malo,cali,True
+1558,47,97,186,malo,riohacha,False
+79,18,392,399,malo,bogota,True
+965,7,10,286,malo,'santa marta',False
+908,93,423,413,malo,barranquilla,True
+1760,98,207,171,bueno,cali,True
+1949,84,424,405,malo,cali,False
+537,2,208,196,malo,barranquilla,False
+634,23,149,405,regular,bogota,False
+710,58,226,92,bueno,'santa marta',False
+1109,60,268,406,bueno,cali,False
+81,44,119,307,malo,riohacha,False
+1500,20,66,373,malo,cali,False
+698,39,149,273,bueno,barranquilla,False
