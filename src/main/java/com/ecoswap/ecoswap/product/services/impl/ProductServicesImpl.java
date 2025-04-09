@@ -271,24 +271,24 @@ public class ProductServicesImpl implements ProductService{
     }
 
     @Override
-    @Scheduled(fixedRate = 3000)
+    @Scheduled(fixedRate = 10000)
     public void markProductsAsInactiveFromCompletedExchanges() {
-        // List<Exchange> completedExchanges = exchangeRepository.findByStatus("completado");
+         List<Exchange> completedExchanges = exchangeRepository.findByStatus("completado");
 
-        // for (Exchange exchange : completedExchanges) {
-        //     Product productTo = exchange.getProductTo();
-        //     Product productFrom = exchange.getProductFrom();
+         for (Exchange exchange : completedExchanges) {
+             Product productTo = exchange.getProductTo();
+             Product productFrom = exchange.getProductFrom();
 
-        //     if (productTo != null) {
-        //         productTo.setProductStatus("inactivo");
-        //         productRepository.save(productTo);
-        //     }
+             if (productTo != null) {
+                 productTo.setProductStatus("inactivo");
+                 productRepository.save(productTo);
+             }
 
-        //     if (productFrom != null) {
-        //         productFrom.setProductStatus("inactivo");
-        //         productRepository.save(productFrom);
-        //     }
-        // }
+             if (productFrom != null) {
+                 productFrom.setProductStatus("inactivo");
+                 productRepository.save(productFrom);
+             }
+         }
 
     }
 
