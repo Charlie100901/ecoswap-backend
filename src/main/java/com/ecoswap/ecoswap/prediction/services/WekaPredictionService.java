@@ -2,6 +2,7 @@ package com.ecoswap.ecoswap.prediction.services;
 
 import com.ecoswap.ecoswap.exchange.models.dto.ExchangeDTO;
 import com.ecoswap.ecoswap.exchange.repositories.ExchangeRepository;
+import com.ecoswap.ecoswap.prediction.models.dto.ManualPredictionDTO;
 import com.ecoswap.ecoswap.prediction.models.dto.PredictionResult;
 import com.ecoswap.ecoswap.product.models.entities.Product;
 import com.ecoswap.ecoswap.product.repositories.ProductRepository;
@@ -105,4 +106,38 @@ public class WekaPredictionService {
 
         return response;
     }
+
+    public Map<String, Object> generateManualPrediction(ManualPredictionDTO manualDTO) {
+        Product productTo = productRepository.findById(manualDTO.getProductToId())
+                .orElseThrow(() -> new IllegalStateException("El producto destino no existe."));
+
+        PredictionResult result = predictExchangeSuccess(
+                productTo.getId(),
+                manualDTO.getDaysPublished(),
+                manualDTO.getInteractions(),
+                manualDTO.getUserSuccessHistory(),
+                manualDTO.getUserRatingCategory(),
+                manualDTO.getLocation()
+        );
+
+        boolean predicted = result.isPrediction(); // true (éxito), false (fracaso)
+        double rawProbability = result.getProbability(); // probabilidad de éxito (True)
+        double finalProbability = predicted ? rawProbability : 1 - rawProbability;
+
+        String confidenceLevel = finalProbability > 0.8 ? "alto" :
+                finalProbability > 0.5 ? "medio" : "bajo";
+
+        String message = predicted
+                ? "La predicción indica que el intercambio será exitoso."
+                : "La predicción indica que este intercambio no será exitoso.";
+
+        Map<String, Object> response = new HashMap<>();
+        response.put("prediction", predicted);
+        response.put("probability", finalProbability); // ← ahora es la probabilidad de la clase predicha (como en Weka)
+        response.put("confidenceLevel", confidenceLevel);
+        response.put("message", message);
+
+        return response;
+    }
+
 }

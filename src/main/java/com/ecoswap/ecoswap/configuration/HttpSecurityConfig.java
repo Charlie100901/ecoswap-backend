@@ -100,7 +100,7 @@ public class HttpSecurityConfig {
 
 
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/prediction").permitAll();
-
+                    authorize.requestMatchers(HttpMethod.POST, "/api/v1/prediction-manual").permitAll();
 
 
 
