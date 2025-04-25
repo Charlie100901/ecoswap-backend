@@ -3,6 +3,7 @@ package com.ecoswap.ecoswap.user.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
@@ -29,7 +30,8 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String address;
     @Column(nullable = false)
-    private int cellphoneNumber;
+    @Size(min = 10, max = 10, message = "El número de teléfono debe tener 10 caracteres")
+    private String cellphoneNumber;
 
     @Enumerated(EnumType.STRING)
     private Role role;

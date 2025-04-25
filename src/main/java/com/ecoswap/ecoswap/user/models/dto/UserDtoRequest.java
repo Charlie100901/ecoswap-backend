@@ -15,5 +15,5 @@ public class UserDtoRequest {
     private String email;
     private String password;
     private String address;
-    private int cellphoneNumber;
+    private String cellphoneNumber;
 }

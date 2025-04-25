@@ -70,7 +70,9 @@ public class HttpSecurityConfig {
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/exchanges").permitAll();
                     authorize.requestMatchers(HttpMethod.GET, "/api/v1/exchanges/counts").permitAll();
                     authorize.requestMatchers(HttpMethod.GET, "/api/v1/exchanges").permitAll();
-
+                    authorize.requestMatchers(HttpMethod.GET, "/api/v1/completed/user/{userId}").permitAll();
+                    authorize.requestMatchers(HttpMethod.POST, "/api/v1/{exchangeId}/confirm").permitAll();
+                    authorize.requestMatchers(HttpMethod.POST, "/api/v1/{exchangeId}/cancel").permitAll();
 
 
                     authorize.requestMatchers(HttpMethod.GET,"/api/v1/user").authenticated();
@@ -98,7 +100,7 @@ public class HttpSecurityConfig {
 
 
                     authorize.requestMatchers(HttpMethod.POST, "/api/v1/prediction").permitAll();
-
+                    authorize.requestMatchers(HttpMethod.POST, "/api/v1/prediction-manual").permitAll();
 
 
 

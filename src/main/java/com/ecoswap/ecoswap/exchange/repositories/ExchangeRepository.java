@@ -27,4 +27,8 @@ public interface ExchangeRepository extends JpaRepository<Exchange, Long> {
     @Query("SELECT COUNT(e) FROM Exchange e WHERE e.productTo.user.id = :userId AND e.status = 'completado'")
     Long countByProductTo_User(@Param("userId") Long userId);
 
+    @Query("SELECT e FROM Exchange e " +
+            "WHERE e.productTo.user.id = :userId OR e.productFrom.user.id = :userId AND e.status = 'pendiente'")
+    List<Exchange> findByProductToUserId(@Param("userId") Long userId);
+
 }

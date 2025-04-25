@@ -46,30 +46,32 @@ public class ProductServicesImpl implements ProductService{
     private String storageFolderPath;
 
     @Override
-    public ProductResponseDTO findAll(int page, int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<Product> productPage = productRepository.findByProductStatus("activo", pageable);
+    public ProductResponseDTO findAll(Integer page, Integer size) {
+        List<Product> productList;
 
-        List<ProductDTO> products = productPage.stream()
-                .map(product -> new ProductDTO(
-                        product.getId(),
-                        product.getTitle(),
-                        product.getDescription(),
-                        product.getCategory(),
-                        product.getConditionProduct(),
-                        product.getImageProduct(),
-                        product.getReleaseDate(),
-                        new UserDTO(
-                                product.getId(),
-                                product.getUser().getName(),
-                                product.getUser().getEmail(),
-                                product.getUser().getAddress(),
-                                product.getUser().getCellphoneNumber()
-                        )
-                ))
+        if (page == null || size == null || size <= 0) {
+            // Sin paginación
+            productList = productRepository.findByProductStatus("activo");
+        } else {
+            // Con paginación
+            Pageable pageable = PageRequest.of(page, size);
+            Page<Product> productPage = productRepository.findByProductStatus("activo", pageable);
+            productList = productPage.getContent();
+
+            List<ProductDTO> products = productList.stream()
+                    .map(this::mapToProductDTO)
+                    .collect(Collectors.toList());
+
+            return new ProductResponseDTO(products, productPage.getTotalPages());
+        }
+
+        // Si no es paginado, devolvemos todo y totalPages = 1
+        List<ProductDTO> products = productList.stream()
+                .map(this::mapToProductDTO)
                 .collect(Collectors.toList());
 
-        return new ProductResponseDTO(products, productPage.getTotalPages());
+        return new ProductResponseDTO(products, 1);
+
 
     }
 
@@ -271,25 +273,45 @@ public class ProductServicesImpl implements ProductService{
     }
 
     @Override
-    @Scheduled(fixedRate = 3000)
+    @Scheduled(fixedRate = 10000)
     public void markProductsAsInactiveFromCompletedExchanges() {
-        // List<Exchange> completedExchanges = exchangeRepository.findByStatus("completado");
+         List<Exchange> completedExchanges = exchangeRepository.findByStatus("completado");
 
-        // for (Exchange exchange : completedExchanges) {
-        //     Product productTo = exchange.getProductTo();
-        //     Product productFrom = exchange.getProductFrom();
+         for (Exchange exchange : completedExchanges) {
+             Product productTo = exchange.getProductTo();
+             Product productFrom = exchange.getProductFrom();
 
-        //     if (productTo != null) {
-        //         productTo.setProductStatus("inactivo");
-        //         productRepository.save(productTo);
-        //     }
+             if (productTo != null) {
+                 productTo.setProductStatus("inactivo");
+                 productRepository.save(productTo);
+             }
 
-        //     if (productFrom != null) {
-        //         productFrom.setProductStatus("inactivo");
-        //         productRepository.save(productFrom);
-        //     }
-        // }
+             if (productFrom != null) {
+                 productFrom.setProductStatus("inactivo");
+                 productRepository.save(productFrom);
+             }
+         }
 
     }
+
+    private ProductDTO mapToProductDTO(Product product) {
+        return new ProductDTO(
+            product.getId(),
+            product.getTitle(),
+            product.getDescription(),
+            product.getCategory(),
+            product.getConditionProduct(),
+            product.getImageProduct(),
+            product.getReleaseDate(),
+            new UserDTO(
+                product.getId(),
+                product.getUser().getName(),
+                product.getUser().getEmail(),
+                product.getUser().getAddress(),
+                product.getUser().getCellphoneNumber()
+            )
+        );
+    }
+    
 
 }

@@ -33,6 +33,12 @@ public class Exchange {
     private String status;
 
     @Column
+    private boolean productFromConfirmed = false;
+
+    @Column
+    private boolean productToConfirmed = false;
+
+    @Column
     private LocalDateTime exchangeRequestedAt;
 
     @Column

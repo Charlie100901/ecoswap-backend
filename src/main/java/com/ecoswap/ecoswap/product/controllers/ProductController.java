@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ecoswap.ecoswap.product.models.dto.ProductResponseDTO;
 import com.ecoswap.ecoswap.product.models.entities.Product;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,8 +24,8 @@ public class ProductController {
 
     @GetMapping("product")
     public ResponseEntity<ProductResponseDTO> findAllProducts(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "9") int size
+        @RequestParam(required = false) Integer page,
+        @RequestParam(required = false) Integer size
     ) {
         return ResponseEntity.ok(productService.findAll(page, size));
     }
@@ -52,12 +53,12 @@ public class ProductController {
     }
 
     @PostMapping("/product/create")
-    public ResponseEntity<ProductDTO> createProduct(ProductDTO productDTO, @RequestParam(value = "file", required = false) MultipartFile image){
+    public ResponseEntity<ProductDTO> createProduct(@Valid ProductDTO productDTO, @RequestParam(value = "file", required = false) MultipartFile image){
         return ResponseEntity.status(HttpStatus.CREATED).body(productService.createProduct(productDTO, image));
     }
 
     @PutMapping("/product/{id}")
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO){
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id,@Valid @RequestBody ProductDTO productDTO){
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(productService.updateProductById(id,productDTO));
     }
 

@@ -83,7 +83,7 @@ public class ExchangeServiceImpl implements ExchangeService {
     public ExchangeDTO selectExchangeRequest(ExchangeDTO requestExchange) {
         Exchange optionalExchange = exchangeRepository.findById(requestExchange.getId()).orElseThrow(() -> new ExchangeNotFoundException("No existe el intercambio"));
 
-        optionalExchange.setStatus("completado");
+        optionalExchange.setStatus("pendiente");
         optionalExchange.setExchangeRespondedAt(LocalDateTime.now());
 
         List<Exchange> requestExchangeAsocidas = exchangeRepository.findByProductTo(requestExchange.getProductTo());
@@ -145,5 +145,71 @@ public class ExchangeServiceImpl implements ExchangeService {
         }
 
         return exchangeDTOS;
+    }
+
+    @Override
+    public List<ExchangeDTO> getCompletedExchangesByUserId(Long userId) {
+        List<Exchange> exchanges = exchangeRepository.findByProductToUserId(userId);
+
+        return exchanges.stream()
+                .map(e -> new ExchangeDTO(
+                        e.getId(),
+                        e.getProductFrom(),
+                        e.getProductTo(),
+                        e.getStatus(),
+                        e.getExchangeRequestedAt(),
+                        e.getExchangeRespondedAt()
+                ))
+                .collect(Collectors.toList());
+
+    }
+
+    @Override
+    public ExchangeDTO confirmReceived(Long exchangeId, Long userId) {
+        Exchange exchange = exchangeRepository.findById(exchangeId)
+                .orElseThrow(() -> new ExchangeNotFoundException("Intercambio no encontrado"));
+
+        if (!exchange.getProductFrom().getUser().getId().equals(userId) &&
+                !exchange.getProductTo().getUser().getId().equals(userId)) {
+            throw new RuntimeException("No tienes permiso para confirmar este intercambio.");
+        }
+
+        if (exchange.getProductFrom().getUser().getId().equals(userId)) {
+            exchange.setProductFromConfirmed(true);
+        } else {
+            exchange.setProductToConfirmed(true);
+        }
+
+        // Si ambos confirmaron, marcar como COMPLETADO
+        if (exchange.isProductFromConfirmed() && exchange.isProductToConfirmed()) {
+            exchange.setStatus("completado");
+        }
+
+        exchangeRepository.save(exchange);
+
+        return new ExchangeDTO(exchange.getId(), exchange.getProductFrom(), exchange.getProductTo(),
+                exchange.getStatus(), exchange.getExchangeRequestedAt(), exchange.getExchangeRespondedAt());
+    }
+
+    @Override
+    public ExchangeDTO cancelExchange(Long exchangeId, Long userId){
+        Exchange exchange = exchangeRepository.findById(exchangeId)
+                .orElseThrow(() -> new ExchangeNotFoundException("Intercambio no encontrado"));
+
+        if (!exchange.getProductFrom().getUser().getId().equals(userId) &&
+                !exchange.getProductTo().getUser().getId().equals(userId)) {
+            throw new RuntimeException("No tienes permiso para confirmar este intercambio.");
+        }
+
+        if (exchange.getProductFrom().getUser().getId().equals(userId)) {
+            exchange.setStatus("cancelado");
+        } else {
+            exchange.setStatus("cancelado");
+        }
+
+        exchangeRepository.save(exchange);
+
+        return new ExchangeDTO(exchange.getId(), exchange.getProductFrom(), exchange.getProductTo(),
+                exchange.getStatus(), exchange.getExchangeRequestedAt(), exchange.getExchangeRespondedAt());
     }
 }
