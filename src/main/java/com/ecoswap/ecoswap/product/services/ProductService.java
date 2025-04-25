@@ -8,7 +8,7 @@ import com.ecoswap.ecoswap.user.models.dto.UserDTO;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface ProductService {
-    ProductResponseDTO findAll(int page, int size);
+    ProductResponseDTO findAll(Integer page, Integer size);
     ProductDTO createProduct(ProductDTO productDTO, MultipartFile image);
     ProductDTO updateProductById(Long id, ProductDTO productDTO);
     void deleteProduct(Long id);
