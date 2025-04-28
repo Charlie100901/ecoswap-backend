@@ -16,6 +16,9 @@ FROM eclipse-temurin:17-alpine
 # Set the working directory
 WORKDIR /app
 
+# Create the images directory
+RUN mkdir -p /app/images
+
 # Copy the built JAR file from the build stage
 COPY --from=build /app/target/*.jar app.jar
 
