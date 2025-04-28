@@ -50,10 +50,8 @@ public class ProductServicesImpl implements ProductService{
         List<Product> productList;
 
         if (page == null || size == null || size <= 0) {
-            // Sin paginación
             productList = productRepository.findByProductStatus("activo");
         } else {
-            // Con paginación
             Pageable pageable = PageRequest.of(page, size);
             Page<Product> productPage = productRepository.findByProductStatus("activo", pageable);
             productList = productPage.getContent();
@@ -65,7 +63,6 @@ public class ProductServicesImpl implements ProductService{
             return new ProductResponseDTO(products, productPage.getTotalPages());
         }
 
-        // Si no es paginado, devolvemos todo y totalPages = 1
         List<ProductDTO> products = productList.stream()
                 .map(this::mapToProductDTO)
                 .collect(Collectors.toList());
@@ -127,7 +124,7 @@ public class ProductServicesImpl implements ProductService{
 
             return productDTOResponse;
 
-        } catch (IOException e) { //CAMBIAR LA EXCEPCION POR IOEXCEPTION cuando suba la imagen
+        } catch (IOException e) { 
             throw new ProductCreationException("Error al crear el producto: " + e.getMessage());
         }
     }
