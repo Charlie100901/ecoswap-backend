@@ -93,9 +93,9 @@ public class ProductServicesImpl implements ProductService{
 
             String uniqueFileName = UUID.randomUUID().toString() + "_" + imageName;
             // Ruta donde se guardarán las imágenes en el servidor
-            String serverImagePath = "http://localhost:8080/images/" + uniqueFileName;
+            String serverImagePath = "https://ecoswap-backend.onrender.com/images/" + uniqueFileName;
 
-            // Guardar la imagen en el servidor
+            // Guardar la imagen en el servidor 
             Files.write(Paths.get(storageFolderPath, uniqueFileName), image.getBytes());
 
             //Pasar el DTO a entidad para guardarlo
