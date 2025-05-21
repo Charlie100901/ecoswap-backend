@@ -49,7 +49,7 @@ public class HttpSecurityConfig {
                     // Permitir solicitudes OPTIONS para CORS
                     authorize.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
 
-
+                    authorize.requestMatchers(HttpMethod.GET, "/images/**").permitAll();
                     authorize.requestMatchers(HttpMethod.POST, "/auth/login").permitAll();
 
                     authorize.requestMatchers(HttpMethod.POST, "/auth/register").permitAll();
